@@ -1,3 +1,5 @@
+import { STATUS_LABELS } from "@/constants/status"
+
 export function formatDate(iso: string): string {
   return new Date(iso).toLocaleDateString()
 }
@@ -10,5 +12,8 @@ export function formatFileSize(bytes: number): string {
 }
 
 export function formatStatusLabel(status: string): string {
-  return status.charAt(0).toUpperCase() + status.slice(1).replace(/_/g, " ")
+  return (
+    STATUS_LABELS[status] ??
+    status.charAt(0).toUpperCase() + status.slice(1).replace(/_/g, " ")
+  )
 }
