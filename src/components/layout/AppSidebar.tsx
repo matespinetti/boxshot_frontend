@@ -1,5 +1,17 @@
 "use client"
 
+import type { LucideIcon } from "lucide-react"
+import {
+  Camera,
+  FileText,
+  Globe,
+  Package,
+  Palette,
+  PanelsTopLeft,
+  SlidersHorizontal,
+  Sparkles,
+  Wrench,
+} from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -14,15 +26,39 @@ import {
 } from "@/components/ui/sidebar"
 import { ROUTES } from "@/constants/routes"
 
-const adminLinks = [
-  { label: "Products", href: ROUTES.admin.products },
-  { label: "Colours / RAL", href: ROUTES.admin.colours },
-  { label: "Countries", href: ROUTES.admin.countries },
-  { label: "Shot Types", href: ROUTES.admin.shotTypes },
-  { label: "Installation Types", href: ROUTES.admin.installationTypes },
-  { label: "Prompt Templates", href: ROUTES.admin.promptTemplates },
-  { label: "Prompt Overrides", href: ROUTES.admin.overrides },
-] as const
+interface NavLink {
+  label: string
+  href: string
+  icon: LucideIcon
+}
+
+const generateLink: NavLink = {
+  label: "Generate",
+  href: ROUTES.generate,
+  icon: Sparkles,
+}
+
+const adminLinks: NavLink[] = [
+  { label: "Products", href: ROUTES.admin.products, icon: Package },
+  { label: "Colours / RAL", href: ROUTES.admin.colours, icon: Palette },
+  { label: "Countries", href: ROUTES.admin.countries, icon: Globe },
+  { label: "Shot Types", href: ROUTES.admin.shotTypes, icon: Camera },
+  {
+    label: "Installation Types",
+    href: ROUTES.admin.installationTypes,
+    icon: Wrench,
+  },
+  {
+    label: "Prompt Templates",
+    href: ROUTES.admin.promptTemplates,
+    icon: FileText,
+  },
+  {
+    label: "Prompt Overrides",
+    href: ROUTES.admin.overrides,
+    icon: SlidersHorizontal,
+  },
+]
 
 function getActiveProps(isActive: boolean) {
   return isActive ? { "data-active": "true" } : {}
@@ -30,44 +66,62 @@ function getActiveProps(isActive: boolean) {
 
 export function AppSidebar() {
   const pathname = usePathname()
-  const isGenerateActive = pathname === ROUTES.generate
+  const isGenerateActive = pathname === generateLink.href
+  const GenerateIcon = generateLink.icon
 
   return (
     <Sidebar>
-      <SidebarContent>
-        <SidebarGroup>
-          <div className="px-2 py-3">
-            <span className="text-sm font-semibold tracking-tight">
-              ParcelFlow
-            </span>
+      <SidebarContent className="gap-4 p-3">
+        <SidebarGroup className="gap-3 rounded-xl border border-sidebar-border/60 bg-sidebar-accent/20 p-3">
+          <div className="flex items-start gap-3">
+            <div className="rounded-lg bg-sidebar-primary/10 p-2 text-sidebar-primary">
+              <PanelsTopLeft className="size-4" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-sm font-semibold tracking-tight">ParcelFlow</p>
+              <p className="text-xs text-muted-foreground">Image operations</p>
+            </div>
           </div>
+
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton
                 isActive={isGenerateActive}
-                render={<Link href={ROUTES.generate} {...getActiveProps(isGenerateActive)} />}
+                className="h-9 rounded-lg"
+                render={
+                  <Link
+                    href={generateLink.href}
+                    {...getActiveProps(isGenerateActive)}
+                  />
+                }
               >
-                Generate
+                <GenerateIcon className="size-4" />
+                <span>{generateLink.label}</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>
 
-        <SidebarGroup>
-          <SidebarGroupLabel>Admin</SidebarGroupLabel>
+        <SidebarGroup className="gap-2">
+          <SidebarGroupLabel className="px-2 text-[11px] uppercase tracking-[0.14em] text-muted-foreground/90">
+            Admin
+          </SidebarGroupLabel>
           <SidebarMenu>
             {adminLinks.map((link) => {
               const isActive = pathname.startsWith(link.href)
+              const Icon = link.icon
 
               return (
                 <SidebarMenuItem key={link.href}>
                   <SidebarMenuButton
                     isActive={isActive}
+                    className="h-9 rounded-lg"
                     render={
                       <Link href={link.href} {...getActiveProps(isActive)} />
                     }
                   >
-                    {link.label}
+                    <Icon className="size-4" />
+                    <span>{link.label}</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               )
