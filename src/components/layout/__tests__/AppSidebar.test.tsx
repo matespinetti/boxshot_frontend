@@ -42,6 +42,14 @@ describe("AppSidebar", () => {
     mockUsePathname.mockReturnValue("/generate")
   })
 
+  it("renders the balanced brand block and one icon per destination", () => {
+    const { container } = renderSidebar()
+
+    expect(screen.getByText("ParcelFlow")).toBeInTheDocument()
+    expect(screen.getByText("Image operations")).toBeInTheDocument()
+    expect(container.querySelectorAll("svg.lucide").length).toBe(9)
+  })
+
   it("renders all navigation links with correct hrefs", () => {
     renderSidebar()
 
