@@ -4,6 +4,7 @@ import {
   ColourSchema,
   CountrySchema,
   InstallationTypeSchema,
+  ProductImageSchema,
   ProductSchema,
   PromptTemplateSchema,
   ShotTypeSchema,
@@ -146,6 +147,32 @@ describe("PromptTemplateSchema", () => {
         is_default: true,
         created_at: "2026-04-15T10:00:00Z",
       }),
+    ).toThrow()
+  })
+})
+
+describe("ProductImageSchema", () => {
+  const valid = {
+    id: UUID,
+    product_id: UUID,
+    label: "Front view",
+    url: "/static/studio/chelsea/front.jpg",
+    created_at: "2026-04-15T10:00:00Z",
+  }
+
+  it("parses a valid product image", () => {
+    const result = ProductImageSchema.parse(valid)
+    expect(result.label).toBe("Front view")
+    expect(result.url).toBe("/static/studio/chelsea/front.jpg")
+  })
+
+  it("rejects a non-UUID id", () => {
+    expect(() => ProductImageSchema.parse({ ...valid, id: "not-a-uuid" })).toThrow()
+  })
+
+  it("rejects a non-UUID product_id", () => {
+    expect(() =>
+      ProductImageSchema.parse({ ...valid, product_id: "not-a-uuid" }),
     ).toThrow()
   })
 })

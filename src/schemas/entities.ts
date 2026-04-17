@@ -52,3 +52,12 @@ export const PromptTemplateSchema = z.object({
   created_at: z.string(),
 })
 export type PromptTemplate = z.infer<typeof PromptTemplateSchema>
+
+export const ProductImageSchema = z.object({
+  id: z.string().uuid(),
+  product_id: z.string().uuid(),
+  label: z.string(),
+  url: z.string(),
+  created_at: z.string(),
+})
+export type ProductImage = z.infer<typeof ProductImageSchema>

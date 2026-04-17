@@ -2,6 +2,7 @@ export type {
   Colour,
   Country,
   Product,
+  ProductImage,
   PromptTemplate,
   ShotType,
 } from "@/schemas/entities"
