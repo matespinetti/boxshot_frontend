@@ -30,7 +30,7 @@ export function ConfirmDialog({
   return (
     <Dialog
       open={open}
-      onOpenChange={(isOpen) => {
+      onOpenChange={(isOpen: boolean) => {
         if (!isOpen) onCancel()
       }}
     >
