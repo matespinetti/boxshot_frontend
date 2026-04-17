@@ -1,11 +1,14 @@
 import "@testing-library/jest-dom"
 import { vi } from "vitest"
 
-global.ResizeObserver = vi.fn().mockImplementation(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}))
+class ResizeObserverMock {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+global.ResizeObserver = ResizeObserverMock as unknown as typeof ResizeObserver
+
+window.HTMLElement.prototype.scrollIntoView = vi.fn()
 
 Object.defineProperty(window, "matchMedia", {
   writable: true,
