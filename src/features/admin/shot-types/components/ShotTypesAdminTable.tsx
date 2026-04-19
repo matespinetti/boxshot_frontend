@@ -32,14 +32,6 @@ export function ShotTypesAdminTable({
         {
           key: "name",
           header: "Name",
-          render: (item) => (
-            <span
-              className="font-medium text-primary cursor-pointer hover:underline"
-              onClick={() => onEdit(item)}
-            >
-              {item.name}
-            </span>
-          ),
         },
         {
           key: "intent",
@@ -55,6 +47,7 @@ export function ShotTypesAdminTable({
         },
       ]}
       onToggleDisabled={onToggleDisabled}
+      onEdit={onEdit}
       entityLabel="shot type"
     />
   )

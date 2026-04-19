@@ -55,12 +55,9 @@ describe("InstallationTypesAdminTable", () => {
       />
     )
 
-    const row = screen.getByText("wall-mounted").closest("tr")
-    expect(row).toBeInTheDocument()
-    
-    // Find and click the name span in that row
-    const editButton = within(row!).getByText("wall-mounted")
-    await user.click(editButton)
+    const activeRow = screen.getByText("Wall Mounted").closest("tr")
+    const editBtn = within(activeRow!).getByRole("button", { name: /edit/i })
+    await user.click(editBtn)
 
     expect(onEdit).toHaveBeenCalledWith(expect.objectContaining({ id: "1" }))
   })

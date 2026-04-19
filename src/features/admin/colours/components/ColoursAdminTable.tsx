@@ -85,6 +85,7 @@ export function ColoursAdminTable({
       perPage={tableData.length > 0 ? tableData.length : 10}
       onPageChange={() => {}}
       onToggleDisabled={onToggleDisabled}
+      onEdit={onEdit}
       entityLabel="colour"
     />
   )

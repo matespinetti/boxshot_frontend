@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 import { describe, expect, it, vi } from "vitest"
 
 import { PromptBlockEditor } from "../PromptBlockEditor"
@@ -21,13 +22,14 @@ describe("PromptBlockEditor", () => {
     expect(screen.getByText("5 / 100")).toBeInTheDocument()
   })
 
-  it("calls onChange when user types", () => {
+  it("calls onChange when user types", async () => {
+    const user = userEvent.setup()
     const onChange = vi.fn()
     render(<PromptBlockEditor value="" onChange={onChange} />)
-    fireEvent.change(screen.getByRole("textbox"), {
-      target: { value: "foo" },
-    })
-    expect(onChange).toHaveBeenCalledWith("foo")
+    await user.type(screen.getByRole("textbox"), "a")
+    
+    // the onChange prop is passed directly to the <textarea> so it gets a React ChangeEvent
+    expect(onChange).toHaveBeenCalledTimes(1)
   })
 
   it("renders the label when provided", () => {

@@ -32,14 +32,6 @@ export function InstallationTypesAdminTable({
         {
           key: "name",
           header: "Name",
-          render: (item) => (
-            <span
-              className="font-medium text-primary cursor-pointer hover:underline"
-              onClick={() => onEdit(item)}
-            >
-              {item.name}
-            </span>
-          ),
         },
         {
           key: "label",
@@ -52,6 +44,7 @@ export function InstallationTypesAdminTable({
         },
       ]}
       onToggleDisabled={onToggleDisabled}
+      onEdit={onEdit}
       entityLabel="installation type"
     />
   )

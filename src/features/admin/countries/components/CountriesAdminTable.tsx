@@ -52,6 +52,7 @@ export function CountriesAdminTable({
         },
       ]}
       onToggleDisabled={onToggleDisabled}
+      onEdit={onEdit}
       entityLabel="country"
     />
   )

@@ -33,14 +33,6 @@ export function ProductsAdminTable({
         {
           key: "name",
           header: "Name",
-          render: (item) => (
-            <span
-              className="font-medium text-primary cursor-pointer hover:underline"
-              onClick={() => onEdit(item)}
-            >
-              {item.name}
-            </span>
-          ),
         },
         {
           key: "slug",
@@ -63,6 +55,7 @@ export function ProductsAdminTable({
         },
       ]}
       onToggleDisabled={onToggleDisabled}
+      onEdit={onEdit}
       entityLabel="product"
     />
   )

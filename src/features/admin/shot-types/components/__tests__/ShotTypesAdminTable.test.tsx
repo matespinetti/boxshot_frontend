@@ -58,9 +58,8 @@ describe("ShotTypesAdminTable", () => {
     const row = screen.getByText("Front Angle").closest("tr")
     expect(row).toBeInTheDocument()
     
-    // Find and click the name span in that row
-    const editButton = within(row!).getByText("Front Angle")
-    await user.click(editButton)
+    const editBtn = within(row!).getByRole("button", { name: /edit/i })
+    await user.click(editBtn)
 
     expect(onEdit).toHaveBeenCalledWith(expect.objectContaining({ id: "1" }))
   })

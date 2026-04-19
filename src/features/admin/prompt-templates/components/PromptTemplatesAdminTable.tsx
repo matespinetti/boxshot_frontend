@@ -36,14 +36,6 @@ export function PromptTemplatesAdminTable({
         {
           key: "name",
           header: "Template Name",
-          render: (item) => (
-            <span
-              className="font-medium text-primary cursor-pointer hover:underline"
-              onClick={() => onView(item)}
-            >
-              {item.name}
-            </span>
-          ),
         },
         {
           key: "version",
@@ -69,6 +61,7 @@ export function PromptTemplatesAdminTable({
       // We hijack onToggleDisabled to execute "set default" logic since AdminTable
       // is hardcoded for Enable/Disable actions. We'll only allow it on non-default rows.
       onToggleDisabled={onSetDefault}
+      onView={onView}
       entityLabel="prompt template"
     />
   )

@@ -61,9 +61,9 @@ describe("CountriesAdminTable", () => {
     const row = screen.getByText("United States").closest("tr")
     expect(row).toBeInTheDocument()
     
-    // Find and click the code span in that row
-    const editButton = within(row!).getByText("US")
-    await user.click(editButton)
+    // Find and click the edit button in that row
+    const editBtn = within(row!).getByRole("button", { name: /edit/i })
+    await user.click(editBtn)
 
     expect(onEdit).toHaveBeenCalledWith(expect.objectContaining({ id: "1" }))
   })

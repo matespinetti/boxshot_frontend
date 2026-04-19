@@ -1,4 +1,5 @@
 import { fireEvent, render, screen, within } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 import { describe, expect, it, vi } from "vitest"
 
 import { ColoursAdminTable } from "../ColoursAdminTable"
@@ -40,7 +41,8 @@ describe("ColoursAdminTable", () => {
     expect(screen.getByText("Graphite Black")).toBeInTheDocument()
   })
 
-  it("calls onEdit when ral code is clicked", () => {
+  it("calls onEdit when name is clicked", async () => {
+    const user = userEvent.setup()
     const onEdit = vi.fn()
     render(
       <ColoursAdminTable
@@ -50,7 +52,9 @@ describe("ColoursAdminTable", () => {
       />,
     )
 
-    fireEvent.click(screen.getByText("9010"))
+    const activeRow = screen.getByText("9010").closest("tr")
+    const editBtn = within(activeRow!).getByRole("button", { name: /edit/i })
+    await user.click(editBtn)
     expect(onEdit).toHaveBeenCalledWith(expect.objectContaining(mockColours[0]))
   })
 

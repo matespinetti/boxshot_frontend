@@ -58,7 +58,9 @@ describe("ProductsAdminTable", () => {
       />
     )
 
-    await user.click(screen.getByText("Ceramic Mug"))
+    const activeRow = screen.getByText("Ceramic Mug").closest("tr")
+    const editBtn = within(activeRow!).getByRole("button", { name: /edit/i })
+    await user.click(editBtn)
     expect(onEdit).toHaveBeenCalledWith(expect.objectContaining(mockData[0]))
   })
 

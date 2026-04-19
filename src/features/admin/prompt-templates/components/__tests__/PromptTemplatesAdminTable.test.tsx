@@ -72,4 +72,22 @@ describe("PromptTemplatesAdminTable", () => {
     
     expect(onSetDefault).toHaveBeenCalledWith(expect.objectContaining({ id: "2" }))
   })
+
+  it("calls onView when View button is clicked", async () => {
+    const user = userEvent.setup()
+    const onView = vi.fn()
+    render(
+      <PromptTemplatesAdminTable
+        data={mockData}
+        onSetDefault={vi.fn()}
+        onView={onView}
+      />
+    )
+
+    const activeRow = screen.getByText("v1-default").closest("tr")
+    const viewBtn = within(activeRow!).getByRole("button", { name: /view/i })
+    await user.click(viewBtn)
+    
+    expect(onView).toHaveBeenCalledWith(expect.objectContaining(mockData[0]))
+  })
 })
