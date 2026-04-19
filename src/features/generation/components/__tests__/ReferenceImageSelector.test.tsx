@@ -75,7 +75,7 @@ describe("ReferenceImageSelector", () => {
       { wrapper },
     )
     await screen.findByAltText("Front")
-    expect(screen.getByText(/text-to-image mode/i)).toBeInTheDocument()
+    expect(screen.getByText(/no reference images selected/i)).toBeInTheDocument()
   })
 
   it("blocks selection when 9 are already selected", async () => {
