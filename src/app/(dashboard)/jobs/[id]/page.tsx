@@ -1,4 +1,4 @@
-import { PageHeader } from "@/components/shared"
+import { JobResultsView } from "@/features/jobs/components/JobResultsView"
 
 interface JobPageProps {
   params: Promise<{ id: string }>
@@ -9,7 +9,7 @@ export default async function JobPage({ params }: JobPageProps) {
 
   return (
     <div className="p-6">
-      <PageHeader title={`Job ${id}`} description="Review generated images." />
+      <JobResultsView jobId={id} />
     </div>
   )
 }

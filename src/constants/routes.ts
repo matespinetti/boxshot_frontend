@@ -1,5 +1,6 @@
 export const ROUTES = {
   generate: "/generate",
+  jobs: "/jobs",
   job: (id: string) => `/jobs/${id}`,
   admin: {
     root: "/admin",

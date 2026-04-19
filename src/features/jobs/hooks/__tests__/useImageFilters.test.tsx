@@ -13,22 +13,55 @@ function wrapper({ children }: { children: ReactNode }) {
 function makeImages(): JobImage[] {
   return [
     {
-      id: "img-1",
+      id: "11111111-1111-4111-8111-111111111111",
       status: "approved",
       file_path: "/img1.png",
       regeneration_source_id: null,
+      product_id: "aaaaaaa1-aaaa-4aaa-8aaa-aaaaaaaaaaa1",
+      colour_id: "bbbbbbb1-bbbb-4bbb-8bbb-bbbbbbbbbbb1",
+      country_id: "ccccccc1-cccc-4ccc-8ccc-ccccccccccc1",
+      shot_type_id: "ddddddd1-dddd-4ddd-8ddd-ddddddddddd1",
+      variation_number: 1,
+      created_at: "2026-04-19T12:00:10Z",
+      product_name: "Chelsea",
+      ral_code: "RAL7032",
+      country_code: "UK",
+      country_name: "United Kingdom",
+      shot_type_name: "PDP",
     },
     {
-      id: "img-2",
+      id: "11111111-1111-4111-8111-111111111112",
       status: "rejected",
       file_path: "/img2.png",
       regeneration_source_id: null,
+      product_id: "aaaaaaa1-aaaa-4aaa-8aaa-aaaaaaaaaaa1",
+      colour_id: "bbbbbbb1-bbbb-4bbb-8bbb-bbbbbbbbbbb1",
+      country_id: "ccccccc2-cccc-4ccc-8ccc-ccccccccccc2",
+      shot_type_id: "ddddddd2-dddd-4ddd-8ddd-ddddddddddd2",
+      variation_number: 2,
+      created_at: "2026-04-19T12:00:11Z",
+      product_name: "Chelsea",
+      ral_code: "RAL7032",
+      country_code: "NL",
+      country_name: "Netherlands",
+      shot_type_name: "Lifestyle",
     },
     {
-      id: "img-3",
+      id: "11111111-1111-4111-8111-111111111113",
       status: "pending",
       file_path: null,
       regeneration_source_id: null,
+      product_id: "aaaaaaa1-aaaa-4aaa-8aaa-aaaaaaaaaaa1",
+      colour_id: "bbbbbbb1-bbbb-4bbb-8bbb-bbbbbbbbbbb1",
+      country_id: "ccccccc1-cccc-4ccc-8ccc-ccccccccccc1",
+      shot_type_id: "ddddddd2-dddd-4ddd-8ddd-ddddddddddd2",
+      variation_number: 3,
+      created_at: "2026-04-19T12:00:12Z",
+      product_name: "Chelsea",
+      ral_code: "RAL7032",
+      country_code: "UK",
+      country_name: "United Kingdom",
+      shot_type_name: "Lifestyle",
     },
   ]
 }
@@ -68,7 +101,7 @@ describe("useImageFilters", () => {
     const filtered = result.current.filterImages(makeImages())
 
     expect(filtered).toHaveLength(1)
-    expect(filtered[0].id).toBe("img-1")
+    expect(filtered[0].id).toBe("11111111-1111-4111-8111-111111111111")
   })
 
   it("filterImages returns only rejected images when status is 'rejected'", async () => {
@@ -81,7 +114,7 @@ describe("useImageFilters", () => {
     const filtered = result.current.filterImages(makeImages())
 
     expect(filtered).toHaveLength(1)
-    expect(filtered[0].id).toBe("img-2")
+    expect(filtered[0].id).toBe("11111111-1111-4111-8111-111111111112")
   })
 
   it("setFilters updates country_id in state", async () => {
@@ -104,13 +137,33 @@ describe("useImageFilters", () => {
     expect(result.current.filters.shot_type_id).toBe("uuid-shot-1")
   })
 
-  it("country_id filter does not reduce results yet (predicate not implemented)", async () => {
+  it("country_id filter returns only images from the selected country", async () => {
     const { result } = renderHook(() => useImageFilters(), { wrapper })
 
     await act(async () => {
-      await result.current.setFilters({ country_id: "uuid-country-1" })
+      await result.current.setFilters({
+        country_id: "ccccccc1-cccc-4ccc-8ccc-ccccccccccc1",
+      })
     })
 
-    expect(result.current.filterImages(makeImages())).toHaveLength(3)
+    const filtered = result.current.filterImages(makeImages())
+
+    expect(filtered).toHaveLength(2)
+    expect(filtered.every((image) => image.country_id === "ccccccc1-cccc-4ccc-8ccc-ccccccccccc1")).toBe(true)
+  })
+
+  it("shot_type_id filter returns only images from the selected shot type", async () => {
+    const { result } = renderHook(() => useImageFilters(), { wrapper })
+
+    await act(async () => {
+      await result.current.setFilters({
+        shot_type_id: "ddddddd2-dddd-4ddd-8ddd-ddddddddddd2",
+      })
+    })
+
+    const filtered = result.current.filterImages(makeImages())
+
+    expect(filtered).toHaveLength(2)
+    expect(filtered.every((image) => image.shot_type_id === "ddddddd2-dddd-4ddd-8ddd-ddddddddddd2")).toBe(true)
   })
 })
