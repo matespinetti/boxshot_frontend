@@ -39,10 +39,6 @@ const wrapper = ({ children }: { children: React.ReactNode }) => (
   </QueryClientProvider>
 )
 
-async function openPopover() {
-  await userEvent.click(screen.getByRole("button", { name: /choose images/i }))
-}
-
 describe("ReferenceImageSelector", () => {
   beforeEach(() => {
     vi.mocked(getProductImages).mockResolvedValue(mockImages)
@@ -56,7 +52,7 @@ describe("ReferenceImageSelector", () => {
     expect(screen.getByText(/select a product/i)).toBeInTheDocument()
   })
 
-  it("renders image thumbnails inside the popover after data loads", async () => {
+  it("renders image thumbnails after data loads", async () => {
     render(
       <ReferenceImageSelector
         productId="prod-1"
@@ -65,10 +61,7 @@ describe("ReferenceImageSelector", () => {
       />,
       { wrapper },
     )
-    // wait for data, then open the picker
-    await screen.findByRole("button", { name: /choose images/i })
-    await openPopover()
-    expect(screen.getByAltText("Front")).toBeInTheDocument()
+    expect(await screen.findByAltText("Front")).toBeInTheDocument()
     expect(screen.getByAltText("Side")).toBeInTheDocument()
   })
 
@@ -81,8 +74,7 @@ describe("ReferenceImageSelector", () => {
       />,
       { wrapper },
     )
-    await screen.findByRole("button", { name: /choose images/i })
-    await openPopover()
+    await screen.findByAltText("Front")
     expect(screen.getByText(/text-to-image mode/i)).toBeInTheDocument()
   })
 
@@ -96,8 +88,7 @@ describe("ReferenceImageSelector", () => {
       />,
       { wrapper },
     )
-    await screen.findByRole("button", { name: /choose images/i })
-    await openPopover()
+    await screen.findByAltText("Front")
     expect(screen.getByRole("button", { name: "Front" })).toBeDisabled()
     expect(screen.getByRole("button", { name: "Side" })).toBeDisabled()
   })
@@ -112,9 +103,7 @@ describe("ReferenceImageSelector", () => {
       />,
       { wrapper },
     )
-    await screen.findByRole("button", { name: /choose images/i })
-    await openPopover()
-    await userEvent.click(screen.getByRole("button", { name: "Front" }))
+    await userEvent.click(await screen.findByRole("button", { name: "Front" }))
     expect(onChange).toHaveBeenCalledWith(["img-1"])
   })
 
@@ -128,9 +117,7 @@ describe("ReferenceImageSelector", () => {
       />,
       { wrapper },
     )
-    await screen.findByRole("button", { name: /choose images/i })
-    await openPopover()
-    await userEvent.click(screen.getByRole("button", { name: "Front" }))
+    await userEvent.click(await screen.findByRole("button", { name: "Front" }))
     expect(onChange).toHaveBeenCalledWith([])
   })
 })
