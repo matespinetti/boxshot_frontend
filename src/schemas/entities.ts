@@ -9,6 +9,12 @@ export const ProductSchema = z.object({
 })
 export type Product = z.infer<typeof ProductSchema>
 
+export const ProductAdminSchema = ProductSchema.extend({
+  product_prompt_block: z.string(),
+  deleted_at: z.string().nullable(),
+})
+export type ProductAdmin = z.infer<typeof ProductAdminSchema>
+
 export const ColourSchema = z.object({
   id: z.string().uuid(),
   ral_code: z.string(),
