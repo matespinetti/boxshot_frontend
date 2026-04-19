@@ -6,6 +6,7 @@ import {
   Camera,
   FileText,
   Globe,
+  Images,
   Package,
   Palette,
   SlidersHorizontal,
@@ -38,6 +39,12 @@ const generateLink: NavLink = {
   icon: Sparkles,
 }
 
+const jobsLink: NavLink = {
+  label: "Jobs",
+  href: ROUTES.jobs,
+  icon: Images,
+}
+
 const adminLinks: NavLink[] = [
   { label: "Products", href: ROUTES.admin.products, icon: Package },
   { label: "Colours / RAL", href: ROUTES.admin.colours, icon: Palette },
@@ -67,7 +74,10 @@ function getActiveProps(isActive: boolean) {
 export function AppSidebar() {
   const pathname = usePathname()
   const isGenerateActive = pathname === generateLink.href
+  const isJobsActive =
+    pathname === jobsLink.href || pathname.startsWith(`${jobsLink.href}/`)
   const GenerateIcon = generateLink.icon
+  const JobsIcon = jobsLink.icon
 
   return (
     <Sidebar>
@@ -97,6 +107,18 @@ export function AppSidebar() {
               >
                 <GenerateIcon className="size-4" />
                 <span>{generateLink.label}</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                isActive={isJobsActive}
+                className="h-9 rounded-lg"
+                render={
+                  <Link href={jobsLink.href} {...getActiveProps(isJobsActive)} />
+                }
+              >
+                <JobsIcon className="size-4" />
+                <span>{jobsLink.label}</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>

@@ -8,7 +8,7 @@ import {
 import { cn } from "@/lib/utils/cn"
 
 interface StatusBadgeProps {
-  status: ImageStatus | JobStatus
+  status: ImageStatus | JobStatus | string
 }
 
 export function StatusBadge({ status }: StatusBadgeProps) {

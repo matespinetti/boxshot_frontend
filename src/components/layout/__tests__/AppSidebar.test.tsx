@@ -47,7 +47,7 @@ describe("AppSidebar", () => {
 
     expect(screen.getByText("ParcelFlow")).toBeInTheDocument()
     expect(screen.getByText("Image operations")).toBeInTheDocument()
-    expect(container.querySelectorAll("svg.lucide").length).toBe(9)
+    expect(container.querySelectorAll("svg.lucide").length).toBe(10)
   })
 
   it("renders all navigation links with correct hrefs", () => {
@@ -56,6 +56,10 @@ describe("AppSidebar", () => {
     expect(screen.getByRole("link", { name: "Generate" })).toHaveAttribute(
       "href",
       "/generate",
+    )
+    expect(screen.getByRole("link", { name: "Jobs" })).toHaveAttribute(
+      "href",
+      "/jobs",
     )
     expect(screen.getByRole("link", { name: "Products" })).toHaveAttribute(
       "href",
@@ -103,6 +107,17 @@ describe("AppSidebar", () => {
     expect(
       screen.getByRole("link", { name: "Generate" }),
     ).not.toHaveAttribute("data-active", "true")
+  })
+
+  it("marks Jobs as active on /jobs", () => {
+    mockUsePathname.mockReturnValue("/jobs")
+
+    renderSidebar()
+
+    expect(screen.getByRole("link", { name: "Jobs" })).toHaveAttribute(
+      "data-active",
+      "true",
+    )
   })
 
   it("marks Products as active on /admin/products", () => {

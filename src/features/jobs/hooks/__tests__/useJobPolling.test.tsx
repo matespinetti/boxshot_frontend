@@ -19,6 +19,7 @@ function makeJob(status: Job["status"]): Job {
     status,
     total_images: 2,
     completed_images: status === "complete" ? 2 : 1,
+    created_at: "2026-04-19T12:00:00Z",
     images: [],
   }
 }
