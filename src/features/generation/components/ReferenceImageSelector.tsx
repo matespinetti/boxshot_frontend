@@ -43,6 +43,8 @@ export function ReferenceImageSelector({
   }
 
   const baseUrl = new URL(env.NEXT_PUBLIC_API_URL).origin
+  const resolveUrl = (url: string) =>
+    url.startsWith("http") ? url : `${baseUrl}${url}`
 
   const toggle = (id: string) => {
     if (value.includes(id)) {
@@ -78,9 +80,12 @@ export function ReferenceImageSelector({
                 )}
               >
                 <img
-                  src={`${baseUrl}${img.url}`}
+                  src={resolveUrl(img.url)}
                   alt={img.label}
                   className="h-full w-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none"
+                  }}
                 />
               </button>
             )

@@ -40,7 +40,25 @@ export function ColourSelector({
             disabled={disabled}
           >
             <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select colour..." />
+              <SelectValue placeholder="Select colour...">
+                {field.value
+                  ? (() => {
+                      const colour = colours.find((c) => c.id === field.value)
+                      if (!colour) return undefined
+                      return (
+                        <div className="flex items-center gap-2">
+                          <span
+                            className="inline-block h-4 w-4 shrink-0 rounded-full border"
+                            style={{
+                              backgroundColor: colour.hex_preview ?? "#d1d5db",
+                            }}
+                          />
+                          {colour.ral_code} — {colour.name}
+                        </div>
+                      )
+                    })()
+                  : undefined}
+              </SelectValue>
             </SelectTrigger>
             <SelectContent>
               {colours.map((c) => (

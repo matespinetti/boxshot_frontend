@@ -34,7 +34,11 @@ export function ProductSelector({
           <FormLabel>Product</FormLabel>
           <Select value={field.value || ""} onValueChange={field.onChange}>
             <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select product..." />
+              <SelectValue placeholder="Select product...">
+                {field.value
+                  ? products.find((p) => p.id === field.value)?.name
+                  : undefined}
+              </SelectValue>
             </SelectTrigger>
             <SelectContent>
               {products.map((p) => (
