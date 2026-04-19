@@ -11,6 +11,7 @@ export const JobImageSchema = z.object({
     "rejected",
   ]),
   file_path: z.string().nullable(),
+  image_url: z.string().nullable(),
   regeneration_source_id: z.string().uuid().nullable(),
   product_id: z.string().uuid(),
   colour_id: z.string().uuid(),
