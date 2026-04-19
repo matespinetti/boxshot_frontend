@@ -60,6 +60,12 @@ export const InstallationTypeSchema = z.object({
 })
 export type InstallationType = z.infer<typeof InstallationTypeSchema>
 
+export const InstallationTypeAdminSchema = InstallationTypeSchema.extend({
+  installation_prompt_block: z.string(),
+  deleted_at: z.string().nullable(),
+})
+export type InstallationTypeAdmin = z.infer<typeof InstallationTypeAdminSchema>
+
 export const PromptTemplateSchema = z.object({
   id: z.string().uuid(),
   name: z.string(),
