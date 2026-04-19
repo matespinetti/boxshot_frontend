@@ -19,12 +19,19 @@ import { type PromptTemplateAdmin } from "@/schemas/entities"
 
 export default function PromptTemplatesPage() {
   const [isSheetOpen, setIsSheetOpen] = useState(false)
+  const [selectedTemplate, setSelectedTemplate] = useState<PromptTemplateAdmin | null>(null)
 
   const { data: promptTemplates = [], isLoading } = useAdminPromptTemplates()
   const createMutation = useCreatePromptTemplate()
   const setDefaultMutation = useSetDefaultPromptTemplate()
 
   const handleCreate = () => {
+    setSelectedTemplate(null)
+    setIsSheetOpen(true)
+  }
+
+  const handleView = (template: PromptTemplateAdmin) => {
+    setSelectedTemplate(template)
     setIsSheetOpen(true)
   }
 
@@ -74,15 +81,22 @@ export default function PromptTemplatesPage() {
         data={promptTemplates}
         isLoading={isLoading}
         onSetDefault={handleSetDefault}
+        onView={handleView}
       />
 
       <EntitySheet
         open={isSheetOpen}
         onOpenChange={setIsSheetOpen}
-        title="Create Template Version"
-        description="Create a new version of the global prompt template. It will not be active until you set it as default."
+        title={selectedTemplate ? `View Template: ${selectedTemplate.name}` : "Create Template Version"}
+        description={
+          selectedTemplate 
+            ? "Viewing the prompt block contents of this template version. Templates cannot be edited." 
+            : "Create a new version of the global prompt template. It will not be active until you set it as default."
+        }
       >
         <PromptTemplateForm
+          defaultValues={selectedTemplate || undefined}
+          readOnly={!!selectedTemplate}
           onSubmit={handleSubmit}
           isSubmitting={createMutation.isPending}
         />

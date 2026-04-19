@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 
 import { Button } from "@/components/ui/button"
@@ -18,8 +19,10 @@ import {
 } from "@/features/admin/prompt-templates/schemas/prompt-template.schema"
 
 interface PromptTemplateFormProps {
+  defaultValues?: Partial<PromptTemplateFormValues>
   onSubmit: (values: PromptTemplateFormValues) => void
   isSubmitting?: boolean
+  readOnly?: boolean
 }
 
 const DEFAULT_FORM_VALUES: PromptTemplateFormValues = {
@@ -28,11 +31,21 @@ const DEFAULT_FORM_VALUES: PromptTemplateFormValues = {
   quality_rules: "",
 }
 
-export function PromptTemplateForm({ onSubmit, isSubmitting }: PromptTemplateFormProps) {
+export function PromptTemplateForm({ 
+  defaultValues, 
+  onSubmit, 
+  isSubmitting,
+  readOnly 
+}: PromptTemplateFormProps) {
   const form = useForm<PromptTemplateFormValues>({
     resolver: zodResolver(promptTemplateFormSchema),
-    defaultValues: DEFAULT_FORM_VALUES,
+    defaultValues: defaultValues ?? DEFAULT_FORM_VALUES,
   })
+
+  // Reset form when defaultValues changes
+  useEffect(() => {
+    form.reset(defaultValues ?? DEFAULT_FORM_VALUES)
+  }, [defaultValues, form])
 
   return (
     <Form {...form}>
@@ -44,7 +57,7 @@ export function PromptTemplateForm({ onSubmit, isSubmitting }: PromptTemplateFor
             <FormItem>
               <FormLabel>Template Name</FormLabel>
               <FormControl>
-                <Input placeholder="e.g. v2-production" {...field} />
+                <Input placeholder="e.g. v2-production" {...field} disabled={readOnly} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -60,6 +73,7 @@ export function PromptTemplateForm({ onSubmit, isSubmitting }: PromptTemplateFor
                 placeholder="You are an expert product photographer..."
                 value={field.value}
                 onChange={field.onChange}
+                disabled={readOnly}
               />
               <FormMessage />
             </FormItem>
@@ -75,15 +89,18 @@ export function PromptTemplateForm({ onSubmit, isSubmitting }: PromptTemplateFor
                 placeholder="Ensure ultra-realistic lighting, 8k resolution..."
                 value={field.value}
                 onChange={field.onChange}
+                disabled={readOnly}
               />
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <Button type="submit" className="w-full" disabled={isSubmitting}>
-          {isSubmitting ? "Saving..." : "Create Template Version"}
-        </Button>
+        {!readOnly && (
+          <Button type="submit" className="w-full" disabled={isSubmitting}>
+            {isSubmitting ? "Saving..." : "Create Template Version"}
+          </Button>
+        )}
       </form>
     </Form>
   )

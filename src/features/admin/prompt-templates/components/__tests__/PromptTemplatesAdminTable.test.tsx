@@ -32,6 +32,7 @@ describe("PromptTemplatesAdminTable", () => {
       <PromptTemplatesAdminTable
         data={mockData}
         onSetDefault={vi.fn()}
+        onView={vi.fn()}
       />
     )
 
@@ -53,6 +54,7 @@ describe("PromptTemplatesAdminTable", () => {
       <PromptTemplatesAdminTable
         data={mockData}
         onSetDefault={onSetDefault}
+        onView={vi.fn()}
       />
     )
 

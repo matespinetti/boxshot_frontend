@@ -6,12 +6,14 @@ interface PromptTemplatesAdminTableProps {
   data: PromptTemplateAdmin[]
   isLoading?: boolean
   onSetDefault: (template: PromptTemplateAdmin) => void
+  onView: (template: PromptTemplateAdmin) => void
 }
 
 export function PromptTemplatesAdminTable({
   data,
   isLoading,
   onSetDefault,
+  onView,
 }: PromptTemplatesAdminTableProps) {
   // Map our PromptTemplateAdmin to include disabled logic for AdminTable row actions
   const tableData = data.map((row) => ({
@@ -34,6 +36,14 @@ export function PromptTemplatesAdminTable({
         {
           key: "name",
           header: "Template Name",
+          render: (item) => (
+            <span
+              className="font-medium text-primary cursor-pointer hover:underline"
+              onClick={() => onView(item)}
+            >
+              {item.name}
+            </span>
+          ),
         },
         {
           key: "version",
