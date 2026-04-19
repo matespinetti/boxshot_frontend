@@ -26,6 +26,7 @@ interface ImageCardProps {
 }
 
 const REGENERABLE_STATUSES: Array<JobImage["status"]> = [
+  "pending",
   "complete",
   "approved",
   "rejected",
@@ -70,6 +71,7 @@ export function ImageCard({
   const updating = isUpdating(image.id)
   const regenerating = isRegenerating(image.id)
   const busy = updating || regenerating
+  const canRegenerate = REGENERABLE_STATUSES.includes(image.status)
 
   function handleRegenerate() {
     setRegenDialogOpen(false)
@@ -112,9 +114,9 @@ export function ImageCard({
             </div>
           )}
 
-          {!busy && hasImage && (
+          {!busy && (hasImage || canRegenerate) && (
             <div className="absolute inset-0 flex items-end justify-center gap-2 bg-black/40 pb-3 opacity-0 transition-opacity group-hover:opacity-100">
-              {image.status !== "approved" && (
+              {hasImage && image.status !== "approved" && (
                 <Button
                   type="button"
                   size="icon"
@@ -129,7 +131,7 @@ export function ImageCard({
                   <CheckIcon className="size-4" />
                 </Button>
               )}
-              {image.status !== "rejected" && (
+              {hasImage && image.status !== "rejected" && (
                 <Button
                   type="button"
                   size="icon"
@@ -144,7 +146,7 @@ export function ImageCard({
                   <XIcon className="size-4" />
                 </Button>
               )}
-              {REGENERABLE_STATUSES.includes(image.status) && (
+              {canRegenerate && (
                 <Button
                   type="button"
                   size="icon"

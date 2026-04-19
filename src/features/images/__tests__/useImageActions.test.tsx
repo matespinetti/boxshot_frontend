@@ -9,7 +9,6 @@ import type { ReactNode } from "react"
 import type { Job } from "@/schemas/jobs"
 import { useImageActions } from "@/features/images/hooks/useImageActions"
 import * as updateImageStatusModule from "@/features/images/api/updateImageStatus"
-import * as regenerateImageModule from "@/features/images/api/regenerateImage"
 
 vi.mock("@/features/images/api/updateImageStatus")
 vi.mock("@/features/images/api/regenerateImage")

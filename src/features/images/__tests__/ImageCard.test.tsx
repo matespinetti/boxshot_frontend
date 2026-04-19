@@ -87,6 +87,17 @@ describe("ImageCard", () => {
     expect(screen.queryByLabelText("Reject")).not.toBeInTheDocument()
   })
 
+  it("shows Regenerate button for pending images", () => {
+    render(
+      <ImageCard
+        image={makeImage({ status: "pending", image_url: null, file_path: null })}
+        {...defaultProps}
+      />,
+      { wrapper: Wrapper },
+    )
+    expect(screen.getByLabelText("Regenerate")).toBeInTheDocument()
+  })
+
   it("calls onOpenLightbox when image is clicked", () => {
     const onOpenLightbox = vi.fn()
     render(
