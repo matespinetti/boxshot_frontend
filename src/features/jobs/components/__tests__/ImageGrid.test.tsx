@@ -6,6 +6,16 @@ vi.mock("@/lib/env", () => ({
   env: { NEXT_PUBLIC_API_URL: "http://localhost:8000/api/v1" },
 }))
 
+vi.mock("@/features/images/hooks/useImageActions", () => ({
+  useImageActions: () => ({
+    approve: vi.fn(),
+    reject: vi.fn(),
+    regenerate: vi.fn(),
+    isUpdating: () => false,
+    isRegenerating: () => false,
+  }),
+}))
+
 import { ImageGrid } from "../ImageGrid"
 
 const images = [
@@ -52,6 +62,7 @@ describe("ImageGrid", () => {
     render(
       <ImageGrid
         images={images}
+        jobId="job-1"
         selectedIds={[]}
         onToggleSelect={vi.fn()}
         isSelectable={(image) => image.status === "complete"}
@@ -67,6 +78,7 @@ describe("ImageGrid", () => {
     render(
       <ImageGrid
         images={images}
+        jobId="job-1"
         selectedIds={[]}
         onToggleSelect={vi.fn()}
         isSelectable={(image) => image.status === "complete"}
@@ -83,6 +95,7 @@ describe("ImageGrid", () => {
     render(
       <ImageGrid
         images={images}
+        jobId="job-1"
         selectedIds={[]}
         onToggleSelect={onToggleSelect}
         isSelectable={(image) => image.status === "complete"}

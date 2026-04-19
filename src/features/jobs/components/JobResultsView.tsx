@@ -1,15 +1,13 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useQueryClient } from "@tanstack/react-query"
 
 import { EmptyState, PageHeader } from "@/components/shared"
 import { downloadApproved } from "@/features/jobs/api/downloadApproved"
-import { updateImageStatus } from "@/features/jobs/api/updateImageStatus"
+import { useImageActions } from "@/features/images/hooks/useImageActions"
 import type { ImageFilters } from "@/features/jobs/hooks/useImageFilters"
 import { useImageFilters } from "@/features/jobs/hooks/useImageFilters"
 import { useJobPolling } from "@/features/jobs/hooks/useJobPolling"
-import { jobsQueryKeys } from "@/features/jobs/queryKeys"
 import {
   imageSelectionStore,
   useImageSelectionStore,
@@ -30,10 +28,10 @@ function isSelectableImage(image: JobImage): boolean {
 }
 
 export function JobResultsView({ jobId }: JobResultsViewProps) {
-  const queryClient = useQueryClient()
   const jobQuery = useJobPolling(jobId)
   const { filters, setFilters, filterImages } = useImageFilters()
   const { selectedIds } = useImageSelectionStore()
+  const { approve, reject } = useImageActions(jobId)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   useEffect(() => {
@@ -77,16 +75,14 @@ export function JobResultsView({ jobId }: JobResultsViewProps) {
 
   async function handleBulkUpdate(status: "approved" | "rejected") {
     if (selectedEligibleIds.length === 0) return
-
     setIsSubmitting(true)
     try {
       await Promise.all(
-        selectedEligibleIds.map((imageId) => updateImageStatus(imageId, status)),
+        selectedEligibleIds.map((imageId) =>
+          status === "approved" ? approve(imageId) : reject(imageId),
+        ),
       )
       imageSelectionStore.clear()
-      await queryClient.invalidateQueries({
-        queryKey: jobsQueryKeys.detail(jobId),
-      })
     } finally {
       setIsSubmitting(false)
     }
@@ -134,6 +130,7 @@ export function JobResultsView({ jobId }: JobResultsViewProps) {
           />
           <ImageGrid
             images={filteredImages}
+            jobId={jobId}
             selectedIds={selectedIds}
             onToggleSelect={(imageId) => imageSelectionStore.toggle(imageId)}
             isSelectable={isSelectableImage}

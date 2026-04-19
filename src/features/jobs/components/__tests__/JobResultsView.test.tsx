@@ -10,11 +10,12 @@ vi.mock("@/lib/env", () => ({
 }))
 
 vi.mock("@/features/jobs/hooks/useJobPolling")
-vi.mock("@/features/jobs/api/updateImageStatus")
+vi.mock("@/features/images/api/updateImageStatus")
+vi.mock("@/features/images/api/regenerateImage")
 vi.mock("@/features/jobs/api/downloadApproved")
 
 import { downloadApproved } from "@/features/jobs/api/downloadApproved"
-import { updateImageStatus } from "@/features/jobs/api/updateImageStatus"
+import { updateImageStatus } from "@/features/images/api/updateImageStatus"
 import { useJobPolling } from "@/features/jobs/hooks/useJobPolling"
 import { resetImageSelectionStore } from "@/features/jobs/stores/useImageSelectionStore"
 import { JobResultsView } from "../JobResultsView"
