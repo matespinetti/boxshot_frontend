@@ -1,0 +1,64 @@
+<h2>What color direction feels right?</h2>
+<p class="subtitle">ParcelFlow is an internal AI image generation tool — pick the palette that fits the vibe.</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="indigo" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: #1e1b4b; padding: 20px; display: flex; gap: 8px; align-items: center; justify-content: center;">
+      <div style="width:48px;height:48px;border-radius:10px;background:#4f46e5;"></div>
+      <div style="width:48px;height:48px;border-radius:10px;background:#6366f1;"></div>
+      <div style="width:48px;height:48px;border-radius:10px;background:#a5b4fc;"></div>
+      <div style="width:48px;height:48px;border-radius:10px;background:#e0e7ff;"></div>
+      <div style="width:48px;height:48px;border-radius:10px;background:#fff;"></div>
+    </div>
+    <div class="card-body">
+      <h3>A — Indigo / Violet</h3>
+      <p>Bold and modern. Strong primary color — feels creative and premium. Good contrast. Common in AI/design tools (Linear, Vercel, Figma).</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="slate-blue" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: #0f172a; padding: 20px; display: flex; gap: 8px; align-items: center; justify-content: center;">
+      <div style="width:48px;height:48px;border-radius:10px;background:#0ea5e9;"></div>
+      <div style="width:48px;height:48px;border-radius:10px;background:#38bdf8;"></div>
+      <div style="width:48px;height:48px;border-radius:10px;background:#7dd3fc;"></div>
+      <div style="width:48px;height:48px;border-radius:10px;background:#e0f2fe;"></div>
+      <div style="width:48px;height:48px;border-radius:10px;background:#fff;"></div>
+    </div>
+    <div class="card-body">
+      <h3>B — Sky Blue / Dark Slate</h3>
+      <p>Clean and professional. Dark sidebar with bright blue accents. Feels like a serious internal tool. Think Supabase, Planetscale.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="emerald" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: #022c22; padding: 20px; display: flex; gap: 8px; align-items: center; justify-content: center;">
+      <div style="width:48px;height:48px;border-radius:10px;background:#10b981;"></div>
+      <div style="width:48px;height:48px;border-radius:10px;background:#34d399;"></div>
+      <div style="width:48px;height:48px;border-radius:10px;background:#6ee7b7;"></div>
+      <div style="width:48px;height:48px;border-radius:10px;background:#d1fae5;"></div>
+      <div style="width:48px;height:48px;border-radius:10px;background:#fff;"></div>
+    </div>
+    <div class="card-body">
+      <h3>C — Emerald / Green</h3>
+      <p>Fresh and approachable. Less corporate, more startup. Stands out. Works well for approve/reject image actions (green/red semantic color is natural).</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="rose" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: #1c0a14; padding: 20px; display: flex; gap: 8px; align-items: center; justify-content: center;">
+      <div style="width:48px;height:48px;border-radius:10px;background:#e11d48;"></div>
+      <div style="width:48px;height:48px;border-radius:10px;background:#fb7185;"></div>
+      <div style="width:48px;height:48px;border-radius:10px;background:#fda4af;"></div>
+      <div style="width:48px;height:48px;border-radius:10px;background:#ffe4e6;"></div>
+      <div style="width:48px;height:48px;border-radius:10px;background:#fff;"></div>
+    </div>
+    <div class="card-body">
+      <h3>D — Rose / Warm Red</h3>
+      <p>Bold and distinctive. Warm, energetic. Uncommon for tools — very memorable. But conflicts slightly with destructive/error red semantics.</p>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top: 16px;">Click to select your preferred direction, then let me know in the terminal.</p>

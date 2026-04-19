@@ -1,0 +1,10 @@
+{"type":"server-started","port":54981,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:54981","screen_dir":"/home/matespinetti/projects/boxshot/frontend/.superpowers/brainstorm/18473-1776613451/content","state_dir":"/home/matespinetti/projects/boxshot/frontend/.superpowers/brainstorm/18473-1776613451/state"}
+{"type":"screen-added","file":"/home/matespinetti/projects/boxshot/frontend/.superpowers/brainstorm/18473-1776613451/content/color-direction.html"}
+{"source":"user-event","type":"click","text":"A — Indigo / Violet\n      Bold and modern. Strong primary color — feels creative and premium. Good contrast. Common in AI/design tools (Linear, Vercel, Figma).","choice":"indigo","id":null,"timestamp":1776613516159}
+{"type":"screen-added","file":"/home/matespinetti/projects/boxshot/frontend/.superpowers/brainstorm/18473-1776613451/content/sidebar-style.html"}
+{"source":"user-event","type":"click","text":"A — Light sidebar\n    \n      \n      \n        ParcelFlow\n        Generate\n        Jobs\n        Admin\n      \n      \n      \n        Generate\n        Select options and generate product images.\n        Generate","choice":"light-sidebar","id":null,"timestamp":1776613580407}
+{"source":"user-event","type":"click","text":"A — Light sidebar\n    \n      \n      \n        ParcelFlow\n        Generate\n        Jobs\n        Admin\n      \n      \n      \n        Generate\n        Select options and generate product images.\n        Generate","choice":"light-sidebar","id":null,"timestamp":1776613581358}
+{"type":"screen-added","file":"/home/matespinetti/projects/boxshot/frontend/.superpowers/brainstorm/18473-1776613451/content/waiting-1.html"}
+{"type":"screen-added","file":"/home/matespinetti/projects/boxshot/frontend/.superpowers/brainstorm/18473-1776613451/content/design-mockup.html"}
+{"type":"screen-added","file":"/home/matespinetti/projects/boxshot/frontend/.superpowers/brainstorm/18473-1776613451/content/image-selector-options.html"}
+{"type":"server-stopped","reason":"owner process exited"}

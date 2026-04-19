@@ -4,6 +4,7 @@ import { useRef, useState } from "react"
 import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
+import { ConfirmDialog } from "@/components/shared/ConfirmDialog"
 import {
   useDeleteProductImage,
   useProductImages,
@@ -17,6 +18,7 @@ interface ReferenceImageUploadProps {
 export function ReferenceImageUpload({ productId }: ReferenceImageUploadProps) {
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [isUploading, setIsUploading] = useState(false)
+  const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null)
 
   const { data: images = [], isLoading } = useProductImages(productId)
   const uploadMutation = useUploadProductImage()
@@ -56,23 +58,34 @@ export function ReferenceImageUpload({ productId }: ReferenceImageUploadProps) {
     }
   }
 
-  const handleDelete = (imageId: string) => {
-    if (!confirm("Are you sure you want to delete this reference image?")) return
+  const handleDelete = () => {
+    if (!pendingDeleteId) return
 
     deleteMutation.mutate(
-      { imageId, productId },
+      { imageId: pendingDeleteId, productId },
       {
         onSuccess: () => {
           toast.success("Image deleted successfully.")
+          setPendingDeleteId(null)
         },
         onError: () => {
           toast.error("Failed to delete image.")
+          setPendingDeleteId(null)
         },
       }
     )
   }
 
   return (
+    <>
+    <ConfirmDialog
+      open={!!pendingDeleteId}
+      title="Delete reference image"
+      description="This image will be permanently removed. This action cannot be undone."
+      confirmLabel="Delete"
+      onConfirm={handleDelete}
+      onCancel={() => setPendingDeleteId(null)}
+    />
     <div className="space-y-4 pt-4 border-t">
       <div className="flex items-center justify-between">
         <div>
@@ -140,7 +153,7 @@ export function ReferenceImageUpload({ productId }: ReferenceImageUploadProps) {
                     className="size-7"
                     onClick={(e) => {
                       e.stopPropagation()
-                      handleDelete(img.id)
+                      setPendingDeleteId(img.id)
                     }}
                     disabled={deleteMutation.isPending}
                   >
@@ -156,5 +169,6 @@ export function ReferenceImageUpload({ productId }: ReferenceImageUploadProps) {
         </div>
       )}
     </div>
+    </>
   )
 }

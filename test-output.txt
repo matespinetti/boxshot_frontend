@@ -1,0 +1,332 @@
+
+> frontend@0.1.0 test /home/matespinetti/projects/boxshot/frontend
+> vitest --run src/features/admin/colours
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.4 [39m[90m/home/matespinetti/projects/boxshot/frontend[39m
+
+ [32m✓[39m src/features/admin/colours/components/__tests__/ColoursAdminTable.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[33m 480[2mms[22m[39m
+     [33m[2m✓[22m[39m calls onToggleDisabled via AdminTable row action [33m 326[2mms[22m[39m
+ [31m❯[39m src/features/admin/colours/components/__tests__/ColourForm.test.tsx [2m([22m[2m5 tests[22m[2m | [22m[31m1 failed[39m[2m)[22m[33m 1661[2mms[22m[39m
+     [32m✓[39m renders all form fields[32m 104[2mms[22m[39m
+[31m     [31m×[31m submits valid data[39m[33m 1481[2mms[22m[39m
+     [32m✓[39m shows validation errors for empty required fields[32m 46[2mms[22m[39m
+     [32m✓[39m initializes with default values[32m 12[2mms[22m[39m
+     [32m✓[39m shows saving state when isSubmitting is true[32m 15[2mms[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m src/features/admin/colours/components/__tests__/ColourForm.test.tsx[2m > [22mColourForm[2m > [22msubmits valid data
+[31m[1mAssertionError[22m[39m: expected "vi.fn()" to be called with arguments: [ { ral_code: '9010', …(3) } ][90m
+
+Received:
+
+[1m  1st vi.fn() call:
+
+[22m[33m@@ -3,6 +3,148 @@[90m
+[2m      "finish_prompt_block": "some prompt",[22m
+[2m      "hex_preview": "#ffffff",[22m
+[2m      "name": "Pure White",[22m
+[2m      "ral_code": "9010",[22m
+[2m    },[22m
+[31m+   SyntheticBaseEvent {[90m
+[31m+     "_reactName": "onSubmit",[90m
+[31m+     "_targetInst": null,[90m
+[31m+     "bubbles": true,[90m
+[31m+     "cancelable": true,[90m
+[31m+     "currentTarget": null,[90m
+[31m+     "defaultPrevented": true,[90m
+[31m+     "eventPhase": 3,[90m
+[31m+     "isDefaultPrevented": [Function functionThatReturnsTrue],[90m
+[31m+     "isPropagationStopped": [Function functionThatReturnsFalse],[90m
+[31m+     "isTrusted": true,[90m
+[31m+     "nativeEvent": SubmitEvent {[90m
+[31m+       "isTrusted": true,[90m
+[31m+     },[90m
+[31m+     "target": <form[90m
+[31m+       class="space-y-4"[90m
+[31m+     >[90m
+[31m+       <div[90m
+[31m+         class="space-y-2"[90m
+[31m+       >[90m
+[31m+         <label[90m
+[31m+           class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[90m
+[31m+           for="_r_8_-form-item"[90m
+[31m+         >[90m
+[31m+           RAL Code[90m
+[31m+         </label>[90m
+[31m+         <div[90m
+[31m+           aria-describedby="_r_8_-form-item-description"[90m
+[31m+           aria-invalid="false"[90m
+[31m+           id="_r_8_-form-item"[90m
+[31m+         >[90m
+[31m+           <input[90m
+[31m+             class="h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40"[90m
+[31m+             data-slot="input"[90m
+[31m+             id="base-ui-_r_9_"[90m
+[31m+             name="ral_code"[90m
+[31m+             placeholder="e.g. 9010"[90m
+[31m+             value="9010"[90m
+[31m+           />[90m
+[31m+         </div>[90m
+[31m+       </div>[90m
+[31m+       <div[90m
+[31m+         class="space-y-2"[90m
+[31m+       >[90m
+[31m+         <label[90m
+[31m+           class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[90m
+[31m+           for="_r_a_-form-item"[90m
+[31m+         >[90m
+[31m+           Name[90m
+[31m+         </label>[90m
+[31m+         <div[90m
+[31m+           aria-describedby="_r_a_-form-item-description"[90m
+[31m+           aria-invalid="false"[90m
+[31m+           id="_r_a_-form-item"[90m
+[31m+         >[90m
+[31m+           <input[90m
+[31m+             class="h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40"[90m
+[31m+             data-slot="input"[90m
+[31m+             id="base-ui-_r_b_"[90m
+[31m+             name="name"[90m
+[31m+             placeholder="e.g. Pure White"[90m
+[31m+             value="Pure White"[90m
+[31m+           />[90m
+[31m+         </div>[90m
+[31m+       </div>[90m
+[31m+       <div[90m
+[31m+         class="space-y-2"[90m
+[31m+       >[90m
+[31m+         <label[90m
+[31m+           class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[90m
+[31m+           for="_r_c_-form-item"[90m
+[31m+         >[90m
+[31m+           Hex Preview[90m
+[31m+         </label>[90m
+[31m+         <div[90m
+[31m+           aria-describedby="_r_c_-form-item-description"[90m
+[31m+           aria-invalid="false"[90m
+[31m+           id="_r_c_-form-item"[90m
+[31m+         >[90m
+[31m+           <div[90m
+[31m+             class="flex items-center gap-3"[90m
+[31m+           >[90m
+[31m+             <input[90m
+[31m+               class="min-w-0 rounded-lg border border-input bg-transparent text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 w-12 h-12 p-1 cursor-pointer"[90m
+[31m+               data-slot="input"[90m
+[31m+               id="base-ui-_r_d_"[90m
+[31m+               name="hex_preview"[90m
+[31m+               type="color"[90m
+[31m+               value="#ffffff"[90m
+[31m+             />[90m
+[31m+             <input[90m
+[31m+               class="h-8 min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 font-mono uppercase w-32"[90m
+[31m+               data-slot="input"[90m
+[31m+               id="base-ui-_r_e_"[90m
+[31m+               name="hex_preview"[90m
+[31m+               placeholder="#RRGGBB"[90m
+[31m+               type="text"[90m
+[31m+               value="#ffffff"[90m
+[31m+             />[90m
+[31m+           </div>[90m
+[31m+         </div>[90m
+[31m+       </div>[90m
+[31m+       <div[90m
+[31m+         class="space-y-2"[90m
+[31m+       >[90m
+[31m+         <div[90m
+[31m+           class="space-y-1.5"[90m
+[31m+         >[90m
+[31m+           <label[90m
+[31m+             class="text-sm font-medium leading-none"[90m
+[31m+           >[90m
+[31m+             Prompt Block[90m
+[31m+           </label>[90m
+[31m+           <textarea[90m
+[31m+             class="flex field-sizing-content min-h-16 w-full rounded-lg border border-input bg-transparent px-2.5 py-2 text-base transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 resize-y"[90m
+[31m+             data-slot="textarea"[90m
+[31m+             name="finish_prompt_block"[90m
+[31m+             placeholder="e.g. painted with RAL 9010 pure white finish..."[90m
+[31m+             rows="6"[90m
+[31m+           >[90m
+[31m+             some prompt[90m
+[31m+           </textarea>[90m
+[31m+           <p[90m
+[31m+             class="text-right text-xs tabular-nums text-muted-foreground"[90m
+[31m+           >[90m
+[31m+             11[90m
+[31m+              / 2000[90m
+[31m+           </p>[90m
+[31m+         </div>[90m
+[31m+       </div>[90m
+[31m+       <button[90m
+[31m+         class="group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-primary text-primary-foreground [a]:hover:bg-primary/80 h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 w-full"[90m
+[31m+         data-slot="button"[90m
+[31m+         tabindex="0"[90m
+[31m+         type="submit"[90m
+[31m+       >[90m
+[31m+         Save Colour[90m
+[31m+       </button>[90m
+[31m+     </form>,[90m
+[31m+     "timeStamp": 1776624195210,[90m
+[31m+     "type": "submit",[90m
+[31m+   },[90m
+[2m  ][22m
+[39m[90m
+
+Number of calls: [1m1[22m
+[39m
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head />[39m
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<form[39m
+        [33mclass[39m=[32m"space-y-4"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"space-y-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+            [33mfor[39m=[32m"_r_8_-form-item"[39m
+          [36m>[39m
+            [0mRAL Code[0m
+          [36m</label>[39m
+          [36m<div[39m
+            [33maria-describedby[39m=[32m"_r_8_-form-item-description"[39m
+            [33maria-invalid[39m=[32m"false"[39m
+            [33mid[39m=[32m"_r_8_-form-item"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mclass[39m=[32m"h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40"[39m
+              [33mdata-slot[39m=[32m"input"[39m
+              [33mid[39m=[32m"base-ui-_r_9_"[39m
+              [33mname[39m=[32m"ral_code"[39m
+              [33mplaceholder[39m=[32m"e.g. 9010"[39m
+              [33mvalue[39m=[32m"9010"[39m
+            [36m/>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"space-y-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+            [33mfor[39m=[32m"_r_a_-form-item"[39m
+          [36m>[39m
+            [0mName[0m
+          [36m</label>[39m
+          [36m<div[39m
+            [33maria-describedby[39m=[32m"_r_a_-form-item-description"[39m
+            [33maria-invalid[39m=[32m"false"[39m
+            [33mid[39m=[32m"_r_a_-form-item"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mclass[39m=[32m"h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40"[39m
+              [33mdata-slot[39m=[32m"input"[39m
+              [33mid[39m=[32m"base-ui-_r_b_"[39m
+              [33mname[39m=[32m"name"[39m
+              [33mplaceholder[39m=[32m"e.g. Pure White"[39m
+              [33mvalue[39m=[32m"Pure White"[39m
+            [36m/>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"space-y-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+            [33mfor[39m=[32m"_r_c_-form-item"[39m
+          [36m>[39m
+            [0mHex Preview[0m
+          [36m</label>[39m
+          [36m<div[39m
+            [33maria-describedby[39m=[32m"_r_c_-form-item-description"[39m
+            [33maria-invalid[39m=[32m"false"[39m
+            [33mid[39m=[32m"_r_c_-form-item"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"flex items-center gap-3"[39m
+            [36m>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"min-w-0 rounded-lg border border-input bg-transparent text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 w-12 h-12 p-1 cursor-pointer"[39m
+                [33mdata-slot[39m=[32m"input"[39m
+                [33mid[39m=[32m"base-ui-_r_d_"[39m
+                [33mname[39m=[32m"hex_preview"[39m
+                [33mtype[39m=[32m"color"[39m
+                [33mvalue[39m=[32m"#ffffff"[39m
+              [36m/>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"h-8 min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 font-mono uppercase w-32"[39m
+                [33mdata-slot[39m=[32m"input"[39m
+                [33mid[39m=[32m"base-ui-_r_e_"[39m
+                [33mname[39m=[32m"hex_preview"[39m
+                [33mplaceholder[39m=[32m"#RRGGBB"[39m
+                [33mtype[39m=[32m"text"[39m
+                [33mvalue[39m=[32m"#ffffff"[39m
+              [36m/>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"space-y-2"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"space-y-1.5"[39m
+          [36m>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"text-sm font-medium leading-none"[39m
+            [36m>[39m
+              [0mPrompt Block[0m
+            [36m</label>[39m
+            [36m<textarea[39m
+              [33mclass[39m=[32m"flex field-sizing-content min-h-16 w-full rounded-lg border border-input bg-transparent px-2.5 py-2 text-base transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 resize-y"[39m
+              [33mdata-slot[39m=[32m"textarea"[39m
+              [33mname[39m=[32m"finish_prompt_block"[39m
+              [33mplaceholder[39m=[32m"e.g. painted with RAL 9010 pure white finish..."[39m
+              [33mrows[39m=[32m"6"[39m
+            [36m>[39m
+              [0msome prompt[0m
+            [36m</textarea>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"text-right text-xs tabular-nums text-muted-foreground"[39m
+            [36m>[39m
+              [0m11[0m
+              [0m / 2000[0m
+            [36m</p>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-primary text-primary-foreground [a]:hover:bg-primary/80 h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 w-full"[39m
+          [33mdata-slot[39m=[32m"button"[39m
+          [33mtabindex[39m=[32m"0"[39m
+          [33mtype[39m=[32m"submit"[39m
+        [36m>[39m
+          [0mSave Colour[0m
+        [36m</button>[39m
+      [36m</form>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+[36m</html>[39m
+[36m [2m❯[22m src/features/admin/colours/components/__tests__/ColourForm.test.tsx:[2m37:24[22m[39m
+    [90m 35|[39m
+    [90m 36|[39m     [35mawait[39m [34mwaitFor[39m(() [33m=>[39m {
+    [90m 37|[39m       [34mexpect[39m(onSubmit)[33m.[39m[34mtoHaveBeenCalledWith[39m({
+    [90m   |[39m                        [31m^[39m
+    [90m 38|[39m         ral_code[33m:[39m [32m"9010"[39m[33m,[39m
+    [90m 39|[39m         name[33m:[39m [32m"Pure White"[39m[33m,[39m
+[90m [2m❯[22m runWithExpensiveErrorDiagnosticsDisabled node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/config.js:[2m47:12[22m[39m
+[90m [2m❯[22m checkCallback node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/wait-for.js:[2m124:77[22m[39m
+[90m [2m❯[22m Timeout.checkRealTimersCallback node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/wait-for.js:[2m118:16[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m1 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m7 passed[39m[22m[90m (8)[39m
+[2m   Start at [22m 18:43:12
+[2m   Duration [22m 3.49s[2m (transform 396ms, setup 213ms, import 1.26s, tests 2.14s, environment 1.75s)[22m
+
+ ELIFECYCLE  Test failed. See above for more details.

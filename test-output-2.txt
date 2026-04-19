@@ -1,0 +1,616 @@
+
+> frontend@0.1.0 test /home/matespinetti/projects/boxshot/frontend
+> vitest --run src/features/admin/countries
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.4 [39m[90m/home/matespinetti/projects/boxshot/frontend[39m
+
+ [31m❯[39m src/features/admin/countries/components/__tests__/CountriesAdminTable.test.tsx [2m([22m[2m3 tests[22m[2m | [22m[31m3 failed[39m[2m)[22m[33m 515[2mms[22m[39m
+[31m     [31m×[31m renders data correctly[39m[32m 80[2mms[22m[39m
+[31m     [31m×[31m calls onEdit when edit button is clicked[39m[32m 209[2mms[22m[39m
+[31m     [31m×[31m calls onToggleDisabled via AdminTable row action[39m[32m 222[2mms[22m[39m
+ [31m❯[39m src/features/admin/countries/components/__tests__/CountryForm.test.tsx [2m([22m[2m6 tests[22m[2m | [22m[31m2 failed[39m[2m)[22m[33m 1798[2mms[22m[39m
+[31m     [31m×[31m renders all form fields[39m[32m 76[2mms[22m[39m
+     [33m[2m✓[22m[39m submits valid data [33m 435[2mms[22m[39m
+     [32m✓[39m shows validation errors for empty required fields[32m 43[2mms[22m[39m
+[31m     [31m×[31m shows validation error for long code[39m[33m 1221[2mms[22m[39m
+     [32m✓[39m initializes with default values[32m 8[2mms[22m[39m
+     [32m✓[39m shows saving state when isSubmitting is true[32m 12[2mms[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 5 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m src/features/admin/countries/components/__tests__/CountriesAdminTable.test.tsx[2m > [22mCountriesAdminTable[2m > [22mrenders data correctly
+[31m[1mTestingLibraryElementError[22m[39m: Unable to find an element with the text: Active. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"space-y-4"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"rounded-md border"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"relative w-full overflow-x-auto"[39m
+          [33mdata-slot[39m=[32m"table-container"[39m
+        [36m>[39m
+          [36m<table[39m
+            [33mclass[39m=[32m"w-full caption-bottom text-sm"[39m
+            [33mdata-slot[39m=[32m"table"[39m
+          [36m>[39m
+            [36m<thead[39m
+              [33mclass[39m=[32m"[&_tr]:border-b"[39m
+              [33mdata-slot[39m=[32m"table-header"[39m
+            [36m>[39m
+              [36m<tr[39m
+                [33mclass[39m=[32m"border-b transition-colors hover:bg-muted/50 has-aria-expanded:bg-muted/50 data-[state=selected]:bg-muted"[39m
+                [33mdata-slot[39m=[32m"table-row"[39m
+              [36m>[39m
+                [36m<th[39m
+                  [33mclass[39m=[32m"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&:has([role=checkbox])]:pr-0"[39m
+                  [33mdata-slot[39m=[32m"table-head"[39m
+                [36m>[39m
+                  [0mCode[0m
+                [36m</th>[39m
+                [36m<th[39m
+                  [33mclass[39m=[32m"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&:has([role=checkbox])]:pr-0"[39m
+                  [33mdata-slot[39m=[32m"table-head"[39m
+                [36m>[39m
+                  [0mName[0m
+                [36m</th>[39m
+                [36m<th[39m
+                  [33mclass[39m=[32m"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&:has([role=checkbox])]:pr-0"[39m
+                  [33mdata-slot[39m=[32m"table-head"[39m
+                [36m>[39m
+                  [0mStatus[0m
+                [36m</th>[39m
+                [36m<th[39m
+                  [33mclass[39m=[32m"h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&:has([role=checkbox])]:pr-0"[39m
+                  [33mdata-slot[39m=[32m"table-head"[39m
+                [36m>[39m
+                  [0mActions[0m
+                [36m</th>[39m
+              [36m</tr>[39m
+            [36m</thead>[39m
+            [36m<tbody[39m
+              [33mclass[39m=[32m"[&_tr:last-child]:border-0"[39m
+              [33mdata-slot[39m=[32m"table-body"[39m
+            [36m>[39m
+              [36m<tr[39m
+                [33mclass[39m=[32m"border-b transition-colors hover:bg-muted/50 has-aria-expanded:bg-muted/50 data-[state=selected]:bg-muted"[39m
+                [33mdata-slot[39m=[32m"table-row"[39m
+              [36m>[39m
+                [36m<td[39m
+                  [33mclass[39m=[32m"p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0"[39m
+                  [33mdata-slot[39m=[32m"table-cell"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"font-mono text-sm"[39m
+                  [36m>[39m
+                    [0mUS[0m
+                  [36m</span>[39m
+                [36m</td>[39m
+                [36m<td[39m
+                  [33mclass[39m=[32m"p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0"[39m
+                  [33mdata-slot[39m=[32m"table-cell"[39m
+                [36m>[39m
+                  [0mUnited States[0m
+                [36m</td>[39m
+                [36m<td[39m
+                  [33mclass[39m=[32m"p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0"[39m
+                  [33mdata-slot[39m=[32m"table-cell"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-4xl border border-transparent px-2 py-0.5 text-xs font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none [&>svg]:size-3! [a]:hover:bg-primary/80 bg-green-100 text-green-800"[39m
+                    [33mdata-slot[39m=[32m"badge"[39m
+                    [33mdata-variant[39m=[32m"default"[39m
+                  [36m>[39m
+                    [0mComplete[0m
+                  [36m</span>[39m
+                [36m</td>[39m
+                [36m<td[39m
+                  [33mclass[39m=[32m"p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0"[39m
+                  [33mdata-slot[39m=[32m"table-cell"[39m
+                [36m>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"flex items-center gap-2"[39m
+                  [36m>[39m
+                    [36m<button[39m
+                      [33mclass[39m=[32m"group/button inline-flex shrink-0 items-center justify-center border border-transparent bg-clip-padding font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:ring-3 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40 h-7 gap-1 rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5"[39m
+                      [33mdata-slot[39m=[32m"button"[39m
+                      [33mtabindex[39m=[32m"0"[39m
+                      [33mtype[39m=[32m"button"[39m
+                    [36m>[39m
+                      [0mDisable[0m
+                    [36m</button>[39m
+                  [36m</div>[39m
+                [36m</td>[39m
+              [36m</tr>[39m
+              [36m<tr[39m
+                [33mclass[39m=[32m"border-b transition-colors hover:bg-muted/50 has-aria-expanded:bg-muted/50 data-[state=selected]:bg-muted"[39m
+                [33mdata-slot[39m=[32m"table-row"[39m
+              [36m>[39m
+                [36m<td[39m
+                  [33mclass[39m=[32m"p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0"[39m
+                  [33mdata-slot[39m=[32m"table-cell"[39m
+                [36m>[39m
+                  [36m<span[39m
+      ...
+[90m [2m❯[22m Object.getElementError node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/config.js:[2m37:19[22m[39m
+[90m [2m❯[22m node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:[2m76:38[22m[39m
+[90m [2m❯[22m node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:[2m52:17[22m[39m
+[90m [2m❯[22m node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:[2m95:19[22m[39m
+[36m [2m❯[22m src/features/admin/countries/components/__tests__/CountriesAdminTable.test.tsx:[2m44:19[22m[39m
+    [90m 42|[39m
+    [90m 43|[39m     [90m// Check status badges[39m
+    [90m 44|[39m     [34mexpect[39m(screen[33m.[39m[34mgetByText[39m([32m"Active"[39m))[33m.[39m[34mtoBeInTheDocument[39m()
+    [90m   |[39m                   [31m^[39m
+    [90m 45|[39m     [34mexpect[39m(screen[33m.[39m[34mgetByText[39m([32m"Inactive"[39m))[33m.[39m[34mtoBeInTheDocument[39m()
+    [90m 46|[39m   })
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m src/features/admin/countries/components/__tests__/CountriesAdminTable.test.tsx[2m > [22mCountriesAdminTable[2m > [22mcalls onEdit when edit button is clicked
+[31m[1mTestingLibraryElementError[22m[39m: Unable to find an accessible element with the role "button" and name `/edit/i`
+
+Here are the accessible roles:
+
+  cell:
+
+  Name "US":
+  [36m<td[39m
+    [33mclass[39m=[32m"p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0"[39m
+    [33mdata-slot[39m=[32m"table-cell"[39m
+  [36m/>[39m
+
+  --------------------------------------------------cell:
+
+  Name "United States":
+  [36m<td[39m
+    [33mclass[39m=[32m"p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0"[39m
+    [33mdata-slot[39m=[32m"table-cell"[39m
+  [36m/>[39m
+
+  --------------------------------------------------cell:
+
+  Name "Complete":
+  [36m<td[39m
+    [33mclass[39m=[32m"p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0"[39m
+    [33mdata-slot[39m=[32m"table-cell"[39m
+  [36m/>[39m
+
+  --------------------------------------------------cell:
+
+  Name "Disable":
+  [36m<td[39m
+    [33mclass[39m=[32m"p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0"[39m
+    [33mdata-slot[39m=[32m"table-cell"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Disable":
+  [36m<button[39m
+    [33mclass[39m=[32m"group/button inline-flex shrink-0 items-center justify-center border border-transparent bg-clip-padding font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:ring-3 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40 h-7 gap-1 rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5"[39m
+    [33mdata-slot[39m=[32m"button"[39m
+    [33mtabindex[39m=[32m"0"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<tr[39m
+  [33mclass[39m=[32m"border-b transition-colors hover:bg-muted/50 has-aria-expanded:bg-muted/50 data-[state=selected]:bg-muted"[39m
+  [33mdata-slot[39m=[32m"table-row"[39m
+[36m>[39m
+  [36m<td[39m
+    [33mclass[39m=[32m"p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0"[39m
+    [33mdata-slot[39m=[32m"table-cell"[39m
+  [36m>[39m
+    [36m<span[39m
+      [33mclass[39m=[32m"font-mono text-sm"[39m
+    [36m>[39m
+      [0mUS[0m
+    [36m</span>[39m
+  [36m</td>[39m
+  [36m<td[39m
+    [33mclass[39m=[32m"p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0"[39m
+    [33mdata-slot[39m=[32m"table-cell"[39m
+  [36m>[39m
+    [0mUnited States[0m
+  [36m</td>[39m
+  [36m<td[39m
+    [33mclass[39m=[32m"p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0"[39m
+    [33mdata-slot[39m=[32m"table-cell"[39m
+  [36m>[39m
+    [36m<span[39m
+      [33mclass[39m=[32m"group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-4xl border border-transparent px-2 py-0.5 text-xs font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none [&>svg]:size-3! [a]:hover:bg-primary/80 bg-green-100 text-green-800"[39m
+      [33mdata-slot[39m=[32m"badge"[39m
+      [33mdata-variant[39m=[32m"default"[39m
+    [36m>[39m
+      [0mComplete[0m
+    [36m</span>[39m
+  [36m</td>[39m
+  [36m<td[39m
+    [33mclass[39m=[32m"p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0"[39m
+    [33mdata-slot[39m=[32m"table-cell"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"flex items-center gap-2"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33mclass[39m=[32m"group/button inline-flex shrink-0 items-center justify-center border border-transparent bg-clip-padding font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:ring-3 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40 h-7 gap-1 rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5"[39m
+        [33mdata-slot[39m=[32m"button"[39m
+        [33mtabindex[39m=[32m"0"[39m
+        [33mtype[39m=[32m"button"[39m
+      [36m>[39m
+        [0mDisable[0m
+      [36m</button>[39m
+    [36m</div>[39m
+  [36m</td>[39m
+[36m</tr>[39m
+[90m [2m❯[22m Object.getElementError node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/config.js:[2m37:19[22m[39m
+[90m [2m❯[22m node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:[2m76:38[22m[39m
+[90m [2m❯[22m node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:[2m52:17[22m[39m
+[90m [2m❯[22m node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:[2m95:19[22m[39m
+[36m [2m❯[22m src/features/admin/countries/components/__tests__/CountriesAdminTable.test.tsx:[2m65:37[22m[39m
+    [90m 63|[39m
+    [90m 64|[39m     [90m// Find and click the edit button in that row[39m
+    [90m 65|[39m     const editButton = within(row!).getByRole("button", { name: /edit/…
+    [90m   |[39m                                     [31m^[39m
+    [90m 66|[39m     [35mawait[39m user[33m.[39m[34mclick[39m(editButton)
+    [90m 67|[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m src/features/admin/countries/components/__tests__/CountriesAdminTable.test.tsx[2m > [22mCountriesAdminTable[2m > [22mcalls onToggleDisabled via AdminTable row action
+[31m[1mAssertionError[22m: expected "vi.fn()" to be called with arguments: [ { id: '1', code: 'US', …(4) } ][90m
+
+Received:
+
+[1m  1st vi.fn() call:
+
+[22m[2m  [[22m
+[2m    {[22m
+[2m      "active": true,[22m
+[2m      "code": "US",[22m
+[2m      "deleted_at": null,[22m
+[31m+     "disabled": false,[90m
+[2m      "environment_prompt_block": "us environment",[22m
+[2m      "id": "1",[22m
+[2m      "name": "United States",[22m
+[2m    },[22m
+[2m  ][22m
+[31m[90m
+
+Number of calls: [1m1[22m
+[31m[39m
+[36m [2m❯[22m src/features/admin/countries/components/__tests__/CountriesAdminTable.test.tsx:[2m93:30[22m[39m
+    [90m 91|[39m     [35mawait[39m user[33m.[39m[34mclick[39m(confirmBtn)
+    [90m 92|[39m
+    [90m 93|[39m     [34mexpect[39m(onToggleDisabled)[33m.[39m[34mtoHaveBeenCalledWith[39m(mockData[[34m0[39m])
+    [90m   |[39m                              [31m^[39m
+    [90m 94|[39m
+    [90m 95|[39m     [90m// Inactive row should have Enable button[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m src/features/admin/countries/components/__tests__/CountryForm.test.tsx[2m > [22mCountryForm[2m > [22mrenders all form fields
+[31m[1mTestingLibraryElementError[22m[39m: Found a label with the text of: /Country Code/i, however the element associated with this label (<div />) is non-labellable [https://html.spec.whatwg.org/multipage/forms.html#category-label]. If you really need to label a <div />, you can use aria-label or aria-labelledby instead.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<form[39m
+      [33mclass[39m=[32m"space-y-4"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"space-y-2"[39m
+      [36m>[39m
+        [36m<label[39m
+          [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+          [33mfor[39m=[32m"_r_0_-form-item"[39m
+        [36m>[39m
+          [0mCountry Code[0m
+        [36m</label>[39m
+        [36m<div[39m
+          [33maria-describedby[39m=[32m"_r_0_-form-item-description"[39m
+          [33maria-invalid[39m=[32m"false"[39m
+          [33mid[39m=[32m"_r_0_-form-item"[39m
+        [36m>[39m
+          [36m<input[39m
+            [33mclass[39m=[32m"h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40"[39m
+            [33mdata-slot[39m=[32m"input"[39m
+            [33mid[39m=[32m"base-ui-_r_1_"[39m
+            [33mmaxlength[39m=[32m"5"[39m
+            [33mname[39m=[32m"code"[39m
+            [33mplaceholder[39m=[32m"e.g. US"[39m
+            [33mvalue[39m=[32m""[39m
+          [36m/>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"space-y-2"[39m
+      [36m>[39m
+        [36m<label[39m
+          [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+          [33mfor[39m=[32m"_r_2_-form-item"[39m
+        [36m>[39m
+          [0mName[0m
+        [36m</label>[39m
+        [36m<div[39m
+          [33maria-describedby[39m=[32m"_r_2_-form-item-description"[39m
+          [33maria-invalid[39m=[32m"false"[39m
+          [33mid[39m=[32m"_r_2_-form-item"[39m
+        [36m>[39m
+          [36m<input[39m
+            [33mclass[39m=[32m"h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40"[39m
+            [33mdata-slot[39m=[32m"input"[39m
+            [33mid[39m=[32m"base-ui-_r_3_"[39m
+            [33mname[39m=[32m"name"[39m
+            [33mplaceholder[39m=[32m"e.g. United States"[39m
+            [33mvalue[39m=[32m""[39m
+          [36m/>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"space-y-2"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"space-y-1.5"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"text-sm font-medium leading-none"[39m
+          [36m>[39m
+            [0mEnvironment Prompt Block[0m
+          [36m</label>[39m
+          [36m<textarea[39m
+            [33mclass[39m=[32m"flex field-sizing-content min-h-16 w-full rounded-lg border border-input bg-transparent px-2.5 py-2 text-base transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 resize-y"[39m
+            [33mdata-slot[39m=[32m"textarea"[39m
+            [33mname[39m=[32m"environment_prompt_block"[39m
+            [33mplaceholder[39m=[32m"e.g. situated in a bright, modern US office..."[39m
+            [33mrows[39m=[32m"6"[39m
+          [36m/>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-right text-xs tabular-nums text-muted-foreground"[39m
+          [36m>[39m
+            [0m0[0m
+            [0m / 2000[0m
+          [36m</p>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<button[39m
+        [33mclass[39m=[32m"group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-primary text-primary-foreground [a]:hover:bg-primary/80 h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 w-full"[39m
+        [33mtype[39m=[32m"submit"[39m
+      [36m>[39m
+        [0mSave Country[0m
+      [36m</button>[39m
+    [36m</form>[39m
+  [36m</div>[39m
+[36m</body>[39m
+[90m [2m❯[22m Object.getElementError node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/config.js:[2m37:19[22m[39m
+[90m [2m❯[22m getAllByLabelText node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/queries/label-text.js:[2m106:40[22m[39m
+[90m [2m❯[22m node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:[2m52:17[22m[39m
+[90m [2m❯[22m node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:[2m95:19[22m[39m
+[36m [2m❯[22m src/features/admin/countries/components/__tests__/CountryForm.test.tsx:[2m11:19[22m[39m
+    [90m  9|[39m     [34mrender[39m([33m<[39m[33mCountryForm[39m [33monSubmit[39m[33m=[39m[33m{[39mvi[33m.[39m[34mfn[39m()[33m}[39m [33m/[39m[33m>[39m)
+    [90m 10|[39m
+    [90m 11|[39m     [34mexpect[39m(screen[33m.[39m[34mgetByLabelText[39m([36m/Country Code/i[39m))[33m.[39m[34mtoBeInTheDocument[39m()
+    [90m   |[39m                   [31m^[39m
+    [90m 12|[39m     [34mexpect[39m(screen[33m.[39m[34mgetByLabelText[39m([36m/Name/i[39m))[33m.[39m[34mtoBeInTheDocument[39m()
+    [90m 13|[39m     expect(screen.getByText(/Environment Prompt Block/i)).toBeInTheDoc…
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m src/features/admin/countries/components/__tests__/CountryForm.test.tsx[2m > [22mCountryForm[2m > [22mshows validation error for long code
+[31m[1mTestingLibraryElementError[22m[39m: Unable to find an element with the text: /Code must be 5 characters or less/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<form[39m
+      [33mclass[39m=[32m"space-y-4"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"space-y-2"[39m
+      [36m>[39m
+        [36m<label[39m
+          [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+          [33mfor[39m=[32m"_r_f_-form-item"[39m
+        [36m>[39m
+          [0mCountry Code[0m
+        [36m</label>[39m
+        [36m<div[39m
+          [33maria-describedby[39m=[32m"_r_f_-form-item-description"[39m
+          [33maria-invalid[39m=[32m"false"[39m
+          [33mid[39m=[32m"_r_f_-form-item"[39m
+        [36m>[39m
+          [36m<input[39m
+            [33mclass[39m=[32m"h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40"[39m
+            [33mdata-slot[39m=[32m"input"[39m
+            [33mid[39m=[32m"base-ui-_r_g_"[39m
+            [33mmaxlength[39m=[32m"5"[39m
+            [33mname[39m=[32m"code"[39m
+            [33mplaceholder[39m=[32m"e.g. US"[39m
+            [33mvalue[39m=[32m"TOOLO"[39m
+          [36m/>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"space-y-2"[39m
+      [36m>[39m
+        [36m<label[39m
+          [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+          [33mfor[39m=[32m"_r_h_-form-item"[39m
+        [36m>[39m
+          [0mName[0m
+        [36m</label>[39m
+        [36m<div[39m
+          [33maria-describedby[39m=[32m"_r_h_-form-item-description"[39m
+          [33maria-invalid[39m=[32m"false"[39m
+          [33mid[39m=[32m"_r_h_-form-item"[39m
+        [36m>[39m
+          [36m<input[39m
+            [33mclass[39m=[32m"h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40"[39m
+            [33mdata-slot[39m=[32m"input"[39m
+            [33mid[39m=[32m"base-ui-_r_i_"[39m
+            [33mname[39m=[32m"name"[39m
+            [33mplaceholder[39m=[32m"e.g. United States"[39m
+            [33mvalue[39m=[32m"United States"[39m
+          [36m/>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"space-y-2"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"space-y-1.5"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"text-sm font-medium leading-none"[39m
+          [36m>[39m
+            [0mEnvironment Prompt Block[0m
+          [36m</label>[39m
+          [36m<textarea[39m
+            [33mclass[39m=[32m"flex field-sizing-content min-h-16 w-full rounded-lg border border-input bg-transparent px-2.5 py-2 text-base transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 resize-y"[39m
+            [33mdata-slot[39m=[32m"textarea"[39m
+            [33mname[39m=[32m"environment_prompt_block"[39m
+            [33mplaceholder[39m=[32m"e.g. situated in a bright, modern US office..."[39m
+            [33mrows[39m=[32m"6"[39m
+          [36m>[39m
+            [0msome environment prompt[0m
+          [36m</textarea>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-right text-xs tabular-nums text-muted-foreground"[39m
+          [36m>[39m
+            [0m23[0m
+            [0m / 2000[0m
+          [36m</p>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<button[39m
+        [33mclass[39m=[32m"group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-primary text-primary-foreground [a]:hover:bg-primary/80 h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 w-full"[39m
+        [33mtype[39m=[32m"submit"[39m
+      [36m>[39m
+        [0mSave Country[0m
+      [36m</button>[39m
+    [36m</form>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head />[39m
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<form[39m
+        [33mclass[39m=[32m"space-y-4"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"space-y-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+            [33mfor[39m=[32m"_r_f_-form-item"[39m
+          [36m>[39m
+            [0mCountry Code[0m
+          [36m</label>[39m
+          [36m<div[39m
+            [33maria-describedby[39m=[32m"_r_f_-form-item-description"[39m
+            [33maria-invalid[39m=[32m"false"[39m
+            [33mid[39m=[32m"_r_f_-form-item"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mclass[39m=[32m"h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40"[39m
+              [33mdata-slot[39m=[32m"input"[39m
+              [33mid[39m=[32m"base-ui-_r_g_"[39m
+              [33mmaxlength[39m=[32m"5"[39m
+              [33mname[39m=[32m"code"[39m
+              [33mplaceholder[39m=[32m"e.g. US"[39m
+              [33mvalue[39m=[32m"TOOLO"[39m
+            [36m/>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"space-y-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+            [33mfor[39m=[32m"_r_h_-form-item"[39m
+          [36m>[39m
+            [0mName[0m
+          [36m</label>[39m
+          [36m<div[39m
+            [33maria-describedby[39m=[32m"_r_h_-form-item-description"[39m
+            [33maria-invalid[39m=[32m"false"[39m
+            [33mid[39m=[32m"_r_h_-form-item"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mclass[39m=[32m"h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40"[39m
+              [33mdata-slot[39m=[32m"input"[39m
+              [33mid[39m=[32m"base-ui-_r_i_"[39m
+              [33mname[39m=[32m"name"[39m
+              [33mplaceholder[39m=[32m"e.g. United States"[39m
+              [33mvalue[39m=[32m"United States"[39m
+            [36m/>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"space-y-2"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"space-y-1.5"[39m
+          [36m>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"text-sm font-medium leading-none"[39m
+            [36m>[39m
+              [0mEnvironment Prompt Block[0m
+            [36m</label>[39m
+            [36m<textarea[39m
+              [33mclass[39m=[32m"flex field-sizing-content min-h-16 w-full rounded-lg border border-input bg-transparent px-2.5 py-2 text-base transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 resize-y"[39m
+              [33mdata-slot[39m=[32m"textarea"[39m
+              [33mname[39m=[32m"environment_prompt_block"[39m
+              [33mplaceholder[39m=[32m"e.g. situated in a bright, modern US office..."[39m
+              [33mrows[39m=[32m"6"[39m
+            [36m>[39m
+              [0msome environment prompt[0m
+            [36m</textarea>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"text-right text-xs tabular-nums text-muted-foreground"[39m
+            [36m>[39m
+              [0m23[0m
+              [0m / 2000[0m
+            [36m</p>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-primary text-primary-foreground [a]:hover:bg-primary/80 h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 w-full"[39m
+          [33mtype[39m=[32m"submit"[39m
+        [36m>[39m
+          [0mSave Country[0m
+        [36m</button>[39m
+      [36m</form>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+[36m</html>[39m
+[90m [2m❯[22m waitForWrapper node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/wait-for.js:[2m163:27[22m[39m
+[36m [2m❯[22m src/features/admin/countries/components/__tests__/CountryForm.test.tsx:[2m73:11[22m[39m
+    [90m 71|[39m     await user.click(screen.getByRole("button", { name: "Save Country"…
+    [90m 72|[39m
+    [90m 73|[39m     [35mawait[39m [34mwaitFor[39m(() [33m=>[39m {
+    [90m   |[39m           [31m^[39m
+    [90m 74|[39m       expect(screen.getByText(/Code must be 5 characters or less/i)).t…
+    [90m 75|[39m     })
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m2 failed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[31m5 failed[39m[22m[2m | [22m[1m[32m4 passed[39m[22m[90m (9)[39m
+[2m   Start at [22m 18:54:12
+[2m   Duration [22m 3.42s[2m (transform 327ms, setup 170ms, import 1.17s, tests 2.31s, environment 1.38s)[22m
+
+ ELIFECYCLE  Test failed. See above for more details.

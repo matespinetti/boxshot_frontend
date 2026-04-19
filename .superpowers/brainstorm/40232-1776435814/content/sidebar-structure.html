@@ -1,0 +1,97 @@
+<h2>How should the Admin sub-navigation work?</h2>
+<p class="subtitle">The sidebar has two top-level sections: Generate and Admin. Admin has 7 sub-pages. Pick the structure that feels right for this internal tool.</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Always-expanded flat list</h3>
+      <p>All 7 admin links are always visible. Simple, predictable, no interaction needed.</p>
+      <div class="mockup" style="margin-top:12px">
+        <div class="mockup-header">Sidebar</div>
+        <div class="mockup-body" style="padding:0">
+          <div style="font-family:monospace;font-size:13px;line-height:2;padding:12px">
+            <div style="color:#6366f1;font-weight:600">⚡ Generate</div>
+            <div style="margin-top:8px;color:#94a3b8;font-size:11px;text-transform:uppercase;letter-spacing:.05em">Admin</div>
+            <div style="padding-left:8px;line-height:2.2">
+              <div>📦 Products</div>
+              <div>🎨 Colours / RAL</div>
+              <div>🌍 Countries</div>
+              <div>📷 Shot Types</div>
+              <div>🔧 Installation Types</div>
+              <div>📝 Prompt Templates</div>
+              <div>✏️ Prompt Overrides</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Collapsible Admin section</h3>
+      <p>Admin is a collapsible group. Click to expand/collapse. Collapsed by default when on Generate page.</p>
+      <div class="mockup" style="margin-top:12px">
+        <div class="mockup-header">Sidebar (Generate active)</div>
+        <div class="mockup-body" style="padding:0">
+          <div style="font-family:monospace;font-size:13px;line-height:2;padding:12px">
+            <div style="color:#6366f1;font-weight:600">⚡ Generate</div>
+            <div style="margin-top:8px;display:flex;align-items:center;gap:4px;cursor:pointer">
+              <span>▶</span>
+              <span>Admin</span>
+              <span style="font-size:10px;color:#94a3b8">(collapsed)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mockup" style="margin-top:8px">
+        <div class="mockup-header">Sidebar (Admin active)</div>
+        <div class="mockup-body" style="padding:0">
+          <div style="font-family:monospace;font-size:13px;line-height:2;padding:12px">
+            <div>⚡ Generate</div>
+            <div style="display:flex;align-items:center;gap:4px;margin-top:8px">
+              <span>▼</span><span style="font-weight:600">Admin</span>
+            </div>
+            <div style="padding-left:16px;line-height:2.2;font-size:12px">
+              <div style="color:#6366f1">📦 Products ←</div>
+              <div>🎨 Colours / RAL</div>
+              <div>🌍 Countries</div>
+              <div>📷 Shot Types</div>
+              <div>🔧 Installation Types</div>
+              <div>📝 Prompt Templates</div>
+              <div>✏️ Prompt Overrides</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Two-level nav with Admin as a top link</h3>
+      <p>Generate and Admin are top-level links. Admin link shows sub-nav below it only when on an admin page.</p>
+      <div class="mockup" style="margin-top:12px">
+        <div class="mockup-header">Sidebar (Admin Products active)</div>
+        <div class="mockup-body" style="padding:0">
+          <div style="font-family:monospace;font-size:13px;line-height:2;padding:12px">
+            <div>⚡ Generate</div>
+            <div style="margin-top:4px;color:#6366f1;font-weight:600">🛠 Admin</div>
+            <div style="padding-left:16px;font-size:12px;line-height:2.2;border-left:2px solid #6366f1;margin-left:8px">
+              <div style="color:#6366f1;font-weight:600">📦 Products</div>
+              <div>🎨 Colours / RAL</div>
+              <div>🌍 Countries</div>
+              <div>📷 Shot Types</div>
+              <div>🔧 Installation Types</div>
+              <div>📝 Prompt Templates</div>
+              <div>✏️ Prompt Overrides</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

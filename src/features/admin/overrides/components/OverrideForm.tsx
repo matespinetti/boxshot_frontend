@@ -117,10 +117,12 @@ export function OverrideForm({ onSubmit, isSubmitting }: OverrideFormProps) {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Entity Type</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select an entity type" />
+                    <SelectValue placeholder="Select an entity type">
+                      {selectedEntityType ? ENTITY_CONFIG[selectedEntityType].label : undefined}
+                    </SelectValue>
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -151,12 +153,14 @@ export function OverrideForm({ onSubmit, isSubmitting }: OverrideFormProps) {
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder={
-                      isLoadingEntities 
-                        ? "Loading..." 
-                        : selectedEntityType 
+                      isLoadingEntities
+                        ? "Loading..."
+                        : selectedEntityType
                           ? `Select a ${ENTITY_CONFIG[selectedEntityType as EntityType].label}`
                           : "Select an entity type first"
-                    } />
+                    }>
+                      {entities.find((e) => e.id === field.value)?.name}
+                    </SelectValue>
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>

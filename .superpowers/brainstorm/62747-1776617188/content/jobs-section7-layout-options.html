@@ -1,0 +1,83 @@
+<h2>Section 7: Jobs Flow</h2>
+<p class="subtitle">Choose the interaction model for <code>/jobs</code> and <code>/jobs/[id]</code>. Both assume a new backend <code>GET /jobs</code> endpoint with pagination and basic status filters.</p>
+
+<div class="cards">
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="mockup">
+        <div class="mockup-header">Option A: History + Dedicated Detail</div>
+        <div class="mockup-body">
+          <div class="mock-nav">Jobs</div>
+          <div style="display:grid;grid-template-columns:1fr;gap:12px;">
+            <div class="placeholder" style="height:160px;">/jobs
+              <div style="margin-top:8px;font-size:12px;opacity:.8;">filters row</div>
+              <div style="margin-top:8px;font-size:12px;opacity:.8;">table of recent jobs</div>
+            </div>
+            <div class="placeholder" style="height:220px;">/jobs/[id]
+              <div style="margin-top:8px;font-size:12px;opacity:.8;">status bar</div>
+              <div style="margin-top:8px;font-size:12px;opacity:.8;">filters + image grid</div>
+              <div style="margin-top:8px;font-size:12px;opacity:.8;">bulk actions above grid</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A. History page + full review page</h3>
+      <p><code>/jobs</code> is a compact jobs index. Clicking a row opens a dedicated review workspace at <code>/jobs/[id]</code>.</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Clear route separation</li>
+            <li>Best fit for current redirect flow after Generate</li>
+            <li>Lower implementation risk</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>Two pages to maintain</li>
+            <li>Less “power-user” density</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="mockup">
+        <div class="mockup-header">Option B: Master-detail workspace</div>
+        <div class="mockup-body">
+          <div class="mock-nav">Jobs</div>
+          <div style="display:grid;grid-template-columns:260px 1fr;gap:12px;">
+            <div class="mock-sidebar" style="min-height:220px;">job list rail<br><br>status filters<br><br>recent jobs</div>
+            <div class="mock-content" style="min-height:220px;">selected job detail<br><br>status bar<br><br>image grid</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B. Unified jobs workspace</h3>
+      <p><code>/jobs</code> is the main workspace with a list on the left and the selected job on the right. <code>/jobs/[id]</code> can deep-link into the same view.</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Fast switching between jobs</li>
+            <li>High-density operations UI</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>Heavier first implementation</li>
+            <li>More state syncing between list and detail</li>
+            <li>Less aligned with the current redirect target</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

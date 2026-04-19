@@ -107,24 +107,26 @@ export function ProductForm({ defaultValues, onSubmit, isSubmitting }: ProductFo
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Installation Type</FormLabel>
-                <Select 
-                  onValueChange={field.onChange} 
+                <Select
+                  onValueChange={field.onChange}
                   value={field.value}
                   disabled={isLoadingInstallationTypes}
                 >
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder={
-                        isLoadingInstallationTypes 
-                          ? "Loading types..." 
+                        isLoadingInstallationTypes
+                          ? "Loading types..."
                           : "Select an installation type"
-                      } />
+                      }>
+                        {installationTypes.find((t) => t.id === field.value)?.label}
+                      </SelectValue>
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
                     {installationTypes.map((type) => (
                       <SelectItem key={type.id} value={type.id}>
-                        {type.name}
+                        {type.label}
                       </SelectItem>
                     ))}
                   </SelectContent>
