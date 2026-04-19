@@ -46,6 +46,12 @@ export const ShotTypeSchema = z.object({
 })
 export type ShotType = z.infer<typeof ShotTypeSchema>
 
+export const ShotTypeAdminSchema = ShotTypeSchema.extend({
+  framing_prompt_block: z.string(),
+  deleted_at: z.string().nullable(),
+})
+export type ShotTypeAdmin = z.infer<typeof ShotTypeAdminSchema>
+
 export const InstallationTypeSchema = z.object({
   id: z.string().uuid(),
   name: z.string(),
