@@ -18,6 +18,12 @@ export const ColourSchema = z.object({
 })
 export type Colour = z.infer<typeof ColourSchema>
 
+export const ColourAdminSchema = ColourSchema.extend({
+  finish_prompt_block: z.string(),
+  deleted_at: z.string().nullable(),
+})
+export type ColourAdmin = z.infer<typeof ColourAdminSchema>
+
 export const CountrySchema = z.object({
   id: z.string().uuid(),
   code: z.string(),
@@ -25,6 +31,12 @@ export const CountrySchema = z.object({
   active: z.boolean(),
 })
 export type Country = z.infer<typeof CountrySchema>
+
+export const CountryAdminSchema = CountrySchema.extend({
+  environment_prompt_block: z.string(),
+  deleted_at: z.string().nullable(),
+})
+export type CountryAdmin = z.infer<typeof CountryAdminSchema>
 
 export const ShotTypeSchema = z.object({
   id: z.string().uuid(),
