@@ -29,21 +29,39 @@ export function ReferenceImageSelector({
 
   if (!productId) {
     return (
-      <p className="text-sm text-muted-foreground">
-        Select a product to see reference images.
-      </p>
+      <div className="space-y-2">
+        <div>
+          <p className="text-sm font-medium leading-none">Reference Images</p>
+          <p className="mt-1 text-xs text-muted-foreground">
+            Select up to 9 photos to use as visual reference for generation.
+            Omit for text-to-image mode.
+          </p>
+        </div>
+        <p className="text-sm text-muted-foreground">
+          Select a product to see reference images.
+        </p>
+      </div>
     )
   }
 
   if (isLoading) {
     return (
-      <div className="flex gap-3 overflow-x-auto pb-1">
+      <div className="space-y-2">
+        <div>
+          <p className="text-sm font-medium leading-none">Reference Images</p>
+          <p className="mt-1 text-xs text-muted-foreground">
+            Select up to 9 photos to use as visual reference for generation.
+            Omit for text-to-image mode.
+          </p>
+        </div>
+        <div className="flex gap-3 overflow-x-auto pb-1">
         {Array.from({ length: 4 }).map((_, i) => (
           <div key={i} className="flex shrink-0 flex-col gap-1.5">
             <Skeleton className="h-28 w-28 rounded-lg" />
             <Skeleton className="h-3 w-16 rounded" />
           </div>
         ))}
+        </div>
       </div>
     )
   }
@@ -60,6 +78,13 @@ export function ReferenceImageSelector({
 
   return (
     <div className="space-y-2">
+      <div>
+        <p className="text-sm font-medium leading-none">Reference Images</p>
+        <p className="mt-1 text-xs text-muted-foreground">
+          Select up to 9 photos to use as visual reference for generation. Omit
+          for text-to-image mode.
+        </p>
+      </div>
       {value.length === 0 && (
         <p className="text-xs text-amber-600">
           No reference images selected — text-to-image mode
