@@ -2,12 +2,12 @@
 
 import type { LucideIcon } from "lucide-react"
 import {
+  Box,
   Camera,
   FileText,
   Globe,
   Package,
   Palette,
-  PanelsTopLeft,
   SlidersHorizontal,
   Sparkles,
   Wrench,
@@ -75,7 +75,7 @@ export function AppSidebar() {
         <SidebarGroup className="gap-3 rounded-xl border border-sidebar-border/60 bg-sidebar-accent/20 p-3">
           <div className="flex items-start gap-3">
             <div className="rounded-lg bg-sidebar-primary/10 p-2 text-sidebar-primary">
-              <PanelsTopLeft className="size-4" />
+              <Box className="size-4" />
             </div>
             <div className="min-w-0">
               <p className="text-sm font-semibold tracking-tight">ParcelFlow</p>
