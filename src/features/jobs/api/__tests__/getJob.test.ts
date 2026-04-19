@@ -22,6 +22,7 @@ const mockJobData = {
       id: "22222222-2222-4222-8222-222222222222",
       status: "complete",
       file_path: "/chelsea/RAL7032/UK/PDP/img.png",
+      image_url: "/static/chelsea/RAL7032/UK/PDP/img.png",
       regeneration_source_id: null,
       product_id: "44444444-4444-4444-8444-444444444444",
       colour_id: "55555555-5555-4555-8555-555555555555",
@@ -39,6 +40,7 @@ const mockJobData = {
       id: "33333333-3333-4333-8333-333333333333",
       status: "pending",
       file_path: null,
+      image_url: null,
       regeneration_source_id: null,
       product_id: "44444444-4444-4444-8444-444444444444",
       colour_id: "55555555-5555-4555-8555-555555555555",
@@ -76,6 +78,9 @@ describe("getJob", () => {
     expect(result.images[0].id).toBe("22222222-2222-4222-8222-222222222222")
     expect(result.images[0].product_name).toBe("Chelsea")
     expect(result.images[0].country_code).toBe("UK")
+    expect(result.images[0].image_url).toBe(
+      "/static/chelsea/RAL7032/UK/PDP/img.png",
+    )
   })
 
   it("propagates errors thrown by apiClient", async () => {

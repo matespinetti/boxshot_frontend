@@ -2,6 +2,10 @@ import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { describe, expect, it, vi } from "vitest"
 
+vi.mock("@/lib/env", () => ({
+  env: { NEXT_PUBLIC_API_URL: "http://localhost:8000/api/v1" },
+}))
+
 import { ImageGrid } from "../ImageGrid"
 
 const images = [
@@ -9,6 +13,7 @@ const images = [
     id: "11111111-1111-4111-8111-111111111111",
     status: "complete" as const,
     file_path: "/img-1.png",
+    image_url: "/static/jobs/img-1.png",
     regeneration_source_id: null,
     product_id: "aaaaaaa1-aaaa-4aaa-8aaa-aaaaaaaaaaa1",
     colour_id: "bbbbbbb1-bbbb-4bbb-8bbb-bbbbbbbbbbb1",
@@ -26,6 +31,7 @@ const images = [
     id: "11111111-1111-4111-8111-111111111112",
     status: "pending" as const,
     file_path: null,
+    image_url: null,
     regeneration_source_id: null,
     product_id: "aaaaaaa1-aaaa-4aaa-8aaa-aaaaaaaaaaa1",
     colour_id: "bbbbbbb1-bbbb-4bbb-8bbb-bbbbbbbbbbb1",
@@ -42,6 +48,21 @@ const images = [
 ]
 
 describe("ImageGrid", () => {
+  it("renders image previews from the public image_url", () => {
+    render(
+      <ImageGrid
+        images={images}
+        selectedIds={[]}
+        onToggleSelect={vi.fn()}
+        isSelectable={(image) => image.status === "complete"}
+      />,
+    )
+
+    expect(
+      screen.getByRole("img", { name: "Chelsea UK PDP" }),
+    ).toHaveAttribute("src", "http://localhost:8000/static/jobs/img-1.png")
+  })
+
   it("shows a placeholder tile when the image file is not ready yet", () => {
     render(
       <ImageGrid

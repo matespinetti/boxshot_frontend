@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import { EmptyState, StatusBadge } from "@/components/shared"
 import { Button } from "@/components/ui/button"
 import type { JobImage } from "@/features/jobs/types"
+import { env } from "@/lib/env"
 
 interface ImageGridProps {
   images: JobImage[]
@@ -23,6 +24,14 @@ function getPlaceholderCopy(status: JobImage["status"]): string {
     default:
       return "Image still pending"
   }
+}
+
+function resolveImageUrl(imageUrl: string): string {
+  if (imageUrl.startsWith("http://") || imageUrl.startsWith("https://")) {
+    return imageUrl
+  }
+
+  return `${new URL(env.NEXT_PUBLIC_API_URL).origin}${imageUrl}`
 }
 
 export function ImageGrid({
@@ -63,9 +72,9 @@ export function ImageGrid({
               className="overflow-hidden rounded-2xl border bg-card"
             >
               <div className="relative aspect-square bg-muted">
-                {image.file_path ? (
+                {image.image_url ? (
                   <img
-                    src={image.file_path}
+                    src={resolveImageUrl(image.image_url)}
                     alt={`${image.product_name} ${image.country_code} ${image.shot_type_name}`}
                     className="h-full w-full object-cover"
                   />

@@ -14,6 +14,7 @@ describe("JobImageSchema", () => {
     id: UUID,
     status: "pending" as const,
     file_path: null,
+    image_url: null,
     regeneration_source_id: null,
     product_id: UUID,
     colour_id: "660e8400-e29b-41d4-a716-446655440000",
@@ -41,6 +42,7 @@ describe("JobImageSchema", () => {
         ...valid,
         status: "complete",
         file_path: "/chelsea/RAL7032/UK/PDP/Chelsea_RAL7032_UK_PDP_V1.png",
+        image_url: "/static/chelsea/RAL7032/UK/PDP/Chelsea_RAL7032_UK_PDP_V1.png",
       }),
     ).not.toThrow()
   })
@@ -103,6 +105,7 @@ describe("JobSchema", () => {
             id: UUID,
             status: "complete",
             file_path: "/chelsea/RAL7032/UK/PDP/img.png",
+            image_url: "/static/chelsea/RAL7032/UK/PDP/img.png",
             regeneration_source_id: null,
             product_id: UUID,
             colour_id: "660e8400-e29b-41d4-a716-446655440000",
@@ -120,6 +123,7 @@ describe("JobSchema", () => {
             id: "990e8400-e29b-41d4-a716-446655440000",
             status: "pending",
             file_path: null,
+            image_url: null,
             regeneration_source_id: null,
             product_id: UUID,
             colour_id: "660e8400-e29b-41d4-a716-446655440000",
