@@ -40,7 +40,7 @@ export function ReferenceImageSelector({
       <div className="flex gap-3 overflow-x-auto pb-1">
         {Array.from({ length: 4 }).map((_, i) => (
           <div key={i} className="flex shrink-0 flex-col gap-1.5">
-            <Skeleton className="h-20 w-20 rounded-lg" />
+            <Skeleton className="h-28 w-28 rounded-lg" />
             <Skeleton className="h-3 w-16 rounded" />
           </div>
         ))}
@@ -83,7 +83,7 @@ export function ReferenceImageSelector({
             >
               <div
                 className={cn(
-                  "relative h-20 w-20 overflow-hidden rounded-lg border-2 transition-all",
+                  "relative h-28 w-28 overflow-hidden rounded-lg border-2 transition-all",
                   isSelected
                     ? "border-primary shadow-sm"
                     : "border-transparent group-hover:border-primary/40",
@@ -105,7 +105,7 @@ export function ReferenceImageSelector({
                   </div>
                 )}
               </div>
-              <span className="max-w-[80px] truncate text-center text-xs text-muted-foreground">
+              <span className="max-w-[112px] truncate text-center text-xs text-muted-foreground">
                 {img.label}
               </span>
             </button>
