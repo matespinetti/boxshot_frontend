@@ -71,11 +71,25 @@ export const PromptTemplateSchema = z.object({
   name: z.string(),
   base_framework: z.string(),
   quality_rules: z.string(),
-  version: z.number().int(),
+})
+export type PromptTemplate = z.infer<typeof PromptTemplateSchema>
+
+export const PromptTemplateAdminSchema = PromptTemplateSchema.extend({
+  version: z.number(),
   is_default: z.boolean(),
   created_at: z.string(),
 })
-export type PromptTemplate = z.infer<typeof PromptTemplateSchema>
+export type PromptTemplateAdmin = z.infer<typeof PromptTemplateAdminSchema>
+
+export const PromptBlockOverrideSchema = z.object({
+  id: z.string().uuid(),
+  entity_type: z.string(),
+  entity_id: z.string().uuid(),
+  override_key: z.string(),
+  override_value: z.string(),
+  active: z.boolean(),
+})
+export type PromptBlockOverride = z.infer<typeof PromptBlockOverrideSchema>
 
 export const ProductImageSchema = z.object({
   id: z.string().uuid(),
