@@ -91,7 +91,7 @@ export function GenerationPanel() {
           </div>
 
           <div className="space-y-4 lg:sticky lg:top-6">
-            <div className="rounded-lg border p-4 text-center">
+            <div className="rounded-lg border border-primary/20 bg-primary/5 p-4 text-center">
               <p className="text-3xl font-bold">{totalImages}</p>
               <p className="text-sm text-muted-foreground">
                 images to generate
