@@ -4,10 +4,13 @@ import {
   ColourSchema,
   CountrySchema,
   InstallationTypeSchema,
+  ModelSchema,
   ProductImageSchema,
   ProductSchema,
+  PromptTemplateAdminSchema,
   PromptTemplateSchema,
   ShotTypeSchema,
+  SurfaceTypeSchema,
 } from "../entities"
 
 const UUID = "550e8400-e29b-41d4-a716-446655440000"
@@ -17,11 +20,10 @@ describe("ProductSchema", () => {
     id: UUID,
     name: "Chelsea",
     slug: "chelsea",
-    installation_type_id: UUID,
     active: true,
   }
 
-  it("parses a valid product", () => {
+  it("parses a valid product without installation_type_id", () => {
     expect(() => ProductSchema.parse(valid)).not.toThrow()
   })
 
@@ -29,10 +31,10 @@ describe("ProductSchema", () => {
     expect(() => ProductSchema.parse({ ...valid, id: "not-a-uuid" })).toThrow()
   })
 
-  it("rejects a non-UUID installation_type_id", () => {
-    expect(() =>
-      ProductSchema.parse({ ...valid, installation_type_id: "not-a-uuid" }),
-    ).toThrow()
+  it("rejects a missing slug", () => {
+    const { slug: _slug, ...withoutSlug } = valid
+
+    expect(() => ProductSchema.parse(withoutSlug)).toThrow()
   })
 })
 
@@ -121,6 +123,30 @@ describe("InstallationTypeSchema", () => {
   })
 })
 
+describe("SurfaceTypeSchema", () => {
+  it("parses a valid surface type", () => {
+    expect(() =>
+      SurfaceTypeSchema.parse({
+        id: UUID,
+        name: "brick_wall",
+        label: "Brick Wall",
+        active: true,
+      }),
+    ).not.toThrow()
+  })
+})
+
+describe("ModelSchema", () => {
+  it("parses a valid model option", () => {
+    expect(() =>
+      ModelSchema.parse({
+        id: "fal-ai/gpt-image-1.5/edit",
+        label: "GPT Image 1.5 Edit (Main)",
+      }),
+    ).not.toThrow()
+  })
+})
+
 describe("PromptTemplateSchema", () => {
   it("parses a valid prompt template", () => {
     expect(() =>
@@ -138,7 +164,7 @@ describe("PromptTemplateSchema", () => {
 
   it("rejects a non-integer version", () => {
     expect(() =>
-      PromptTemplateSchema.parse({
+      PromptTemplateAdminSchema.parse({
         id: UUID,
         name: "Standard v1",
         base_framework: "...",

@@ -4,7 +4,6 @@ export const ProductSchema = z.object({
   id: z.string().uuid(),
   name: z.string(),
   slug: z.string(),
-  installation_type_id: z.string().uuid(),
   active: z.boolean(),
 })
 export type Product = z.infer<typeof ProductSchema>
@@ -72,6 +71,20 @@ export const InstallationTypeAdminSchema = InstallationTypeSchema.extend({
 })
 export type InstallationTypeAdmin = z.infer<typeof InstallationTypeAdminSchema>
 
+export const SurfaceTypeSchema = z.object({
+  id: z.string().uuid(),
+  name: z.string(),
+  label: z.string(),
+  active: z.boolean(),
+})
+export type SurfaceType = z.infer<typeof SurfaceTypeSchema>
+
+export const SurfaceTypeAdminSchema = SurfaceTypeSchema.extend({
+  surface_prompt_block: z.string(),
+  deleted_at: z.string().nullable(),
+})
+export type SurfaceTypeAdmin = z.infer<typeof SurfaceTypeAdminSchema>
+
 export const PromptTemplateSchema = z.object({
   id: z.string().uuid(),
   name: z.string(),
@@ -105,3 +118,9 @@ export const ProductImageSchema = z.object({
   created_at: z.string(),
 })
 export type ProductImage = z.infer<typeof ProductImageSchema>
+
+export const ModelSchema = z.object({
+  id: z.string(),
+  label: z.string(),
+})
+export type Model = z.infer<typeof ModelSchema>

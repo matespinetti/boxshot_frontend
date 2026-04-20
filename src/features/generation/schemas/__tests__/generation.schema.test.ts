@@ -11,6 +11,8 @@ describe("PreviewPromptsRequestSchema", () => {
   const valid = {
     product_id: UUID,
     colour_id: UUID,
+    installation_type_id: UUID,
+    surface_type_id: UUID,
     country_ids: [UUID],
     shot_type_ids: [UUID],
   }
@@ -57,14 +59,30 @@ describe("PreviewPromptsRequestSchema", () => {
       PreviewPromptsRequestSchema.parse({ ...valid, product_id: "not-a-uuid" }),
     ).toThrow()
   })
+
+  it("requires installation_type_id", () => {
+    const { installation_type_id: _installationTypeId, ...withoutInstallation } =
+      valid
+
+    expect(() => PreviewPromptsRequestSchema.parse(withoutInstallation)).toThrow()
+  })
+
+  it("requires surface_type_id", () => {
+    const { surface_type_id: _surfaceTypeId, ...withoutSurface } = valid
+
+    expect(() => PreviewPromptsRequestSchema.parse(withoutSurface)).toThrow()
+  })
 })
 
 describe("CreateJobRequestSchema", () => {
   const valid = {
     product_id: UUID,
     colour_id: UUID,
+    installation_type_id: UUID,
+    surface_type_id: UUID,
     country_ids: [UUID],
     shot_type_ids: [UUID],
+    model: "fal-ai/gpt-image-1.5/edit",
   }
 
   it("parses a minimal request and defaults variations to 1", () => {
@@ -139,5 +157,11 @@ describe("CreateJobRequestSchema", () => {
     const result = CreateJobRequestSchema.parse(valid)
 
     expect(result.prompt_template_id).toBeUndefined()
+  })
+
+  it("requires model", () => {
+    const { model: _model, ...withoutModel } = valid
+
+    expect(() => CreateJobRequestSchema.parse(withoutModel)).toThrow()
   })
 })
