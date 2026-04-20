@@ -16,8 +16,11 @@ User selects:
 | ---------------- | ----------------------------- | -------------------------------------------------------- |
 | Product          | Dropdown (single)             | Populated from DB, shows name                            |
 | Colour / RAL     | Dropdown (single)             | Shows RAL code + name + colour swatch                    |
+| Installation type | Dropdown (single)            | Required, selected explicitly per generation             |
+| Surface type     | Dropdown (single)             | Required, selected explicitly per generation             |
 | Countries        | Multi-select                  | At least one required                                    |
 | Shot types       | Multi-select                  | At least one required                                    |
+| Model            | Dropdown (single)             | Required, populated from backend `/models`               |
 | Variations       | Segmented control (1 / 3 / 5) | Per combination                                          |
 | Reference images | Image picker                  | Shows uploaded photos for selected product, pick up to 9 |
 
@@ -34,6 +37,9 @@ All selections stored in URL via nuqs — survive page refresh and are shareable
 
 - Product required
 - Colour required
+- Installation type required
+- Surface type required
+- Model required
 - At least one country
 - At least one shot type
 - At least one reference image selected (warning, not hard block)
@@ -99,6 +105,7 @@ Route prefix: `/admin`
 - Countries
 - Shot Types
 - Installation Types
+- Surface Types
 - Prompt Templates
 - Prompt Overrides
 
@@ -123,13 +130,12 @@ Route prefix: `/admin`
 
 ### Products (`/admin/products`)
 
-**Table columns:** Name, Slug, Installation Type, Status, Actions
+**Table columns:** Name, Slug, Status, Actions
 
 **Form fields:**
 
 - Name (text)
 - Slug (text, auto-generated from name, editable)
-- Installation Type (dropdown → from installation_types table)
 - Product Prompt Block (large textarea)
 - Reference Images (multi-image upload, shows existing, can add/remove)
 
@@ -181,6 +187,18 @@ Route prefix: `/admin`
 - Name (text e.g. "built_in")
 - Label (text e.g. "Built-In (Wall Integrated)")
 - Installation Prompt Block (large textarea)
+
+---
+
+### Surface Types (`/admin/surface-types`)
+
+**Table columns:** Name, Label, Status, Actions
+
+**Form fields:**
+
+- Name (text e.g. "brick_wall")
+- Label (text e.g. "Brick Wall")
+- Surface Prompt Block (large textarea)
 
 ---
 

@@ -28,6 +28,7 @@ vi.mock("@/features/generation/api/createJob", () => ({
 
 import { createJob } from "@/features/generation/api/createJob"
 import { previewPrompts } from "@/features/generation/api/previewPrompts"
+import type { Job } from "@/features/generation/types"
 import { useGenerationForm } from "../useGenerationForm"
 
 const UUID = "550e8400-e29b-41d4-a716-446655440000"
@@ -127,8 +128,22 @@ describe("useGenerationForm", () => {
 
   it("submits installation_type_id, surface_type_id, and model when confirming", async () => {
     const push = vi.fn()
-    vi.mocked(useRouter).mockReturnValue({ push } as ReturnType<typeof useRouter>)
-    vi.mocked(createJob).mockResolvedValue({ id: UUID } as { id: string })
+    vi.mocked(useRouter).mockReturnValue({
+      push,
+      back: vi.fn(),
+      forward: vi.fn(),
+      refresh: vi.fn(),
+      replace: vi.fn(),
+      prefetch: vi.fn(),
+    } as unknown as ReturnType<typeof useRouter>)
+    vi.mocked(createJob).mockResolvedValue({
+      id: UUID,
+      status: "generating",
+      total_images: 1,
+      completed_images: 0,
+      created_at: "2026-04-20T18:00:00Z",
+      images: [],
+    } satisfies Job)
 
     const { result } = renderHook(() => useGenerationForm())
 

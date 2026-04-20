@@ -47,7 +47,7 @@ describe("AppSidebar", () => {
 
     expect(screen.getByText("ParcelFlow")).toBeInTheDocument()
     expect(screen.getByText("Image operations")).toBeInTheDocument()
-    expect(container.querySelectorAll("svg.lucide").length).toBe(10)
+    expect(container.querySelectorAll("svg.lucide").length).toBe(11)
   })
 
   it("renders all navigation links with correct hrefs", () => {
@@ -80,6 +80,10 @@ describe("AppSidebar", () => {
     expect(
       screen.getByRole("link", { name: "Installation Types" }),
     ).toHaveAttribute("href", "/admin/installation-types")
+    expect(screen.getByRole("link", { name: "Surface Types" })).toHaveAttribute(
+      "href",
+      "/admin/surface-types",
+    )
     expect(
       screen.getByRole("link", { name: "Prompt Templates" }),
     ).toHaveAttribute("href", "/admin/prompt-templates")

@@ -65,7 +65,6 @@ List active products (paginated).
       "id": "uuid",
       "name": "Chelsea",
       "slug": "chelsea",
-      "installation_type_id": "uuid",
       "active": true
     }
   ],
@@ -197,6 +196,54 @@ List active installation types (paginated).
 
 ---
 
+### Surface Types
+
+#### `GET /surface-types`
+
+List active surface types (paginated).
+
+**Query params:** `page`, `per_page`
+
+**Response `200`:**
+
+```json
+{
+  "items": [
+    {
+      "id": "uuid",
+      "name": "brick_wall",
+      "label": "Brick Wall",
+      "active": true
+    }
+  ],
+  "total": 5,
+  "page": 1,
+  "per_page": 20,
+  "pages": 1
+}
+```
+
+---
+
+### Models
+
+#### `GET /models`
+
+List the backend-supported generation models.
+
+**Response `200`:**
+
+```json
+[
+  {
+    "id": "fal-ai/gpt-image-1.5/edit",
+    "label": "GPT Image 1.5 Edit (Main)"
+  }
+]
+```
+
+---
+
 ### Prompt Templates
 
 #### `GET /prompt-templates/default`
@@ -231,6 +278,8 @@ Assemble and return prompts for the given selection without triggering generatio
 {
   "product_id": "uuid",
   "colour_id": "uuid",
+  "installation_type_id": "uuid",
+  "surface_type_id": "uuid",
   "country_ids": ["uuid", "uuid"],
   "shot_type_ids": ["uuid", "uuid"],
   "prompt_template_id": "uuid"
@@ -256,6 +305,43 @@ Assemble and return prompts for the given selection without triggering generatio
 ```
 
 Returns one `PreviewItem` per `country × shot_type` combination.
+
+---
+
+### `POST /jobs`
+
+Create a generation job and start background image generation.
+
+**Request body:**
+
+```json
+{
+  "product_id": "uuid",
+  "colour_id": "uuid",
+  "installation_type_id": "uuid",
+  "surface_type_id": "uuid",
+  "country_ids": ["uuid"],
+  "shot_type_ids": ["uuid"],
+  "variations": 1,
+  "model": "fal-ai/gpt-image-1.5/edit",
+  "product_image_ids": ["uuid"]
+}
+```
+
+`prompt_template_id` remains optional. `product_image_ids` may be omitted.
+
+**Response `201`:**
+
+```json
+{
+  "id": "uuid",
+  "status": "generating",
+  "total_images": 1,
+  "completed_images": 0,
+  "created_at": "2026-04-20T18:00:00Z",
+  "images": []
+}
+```
 
 ---
 

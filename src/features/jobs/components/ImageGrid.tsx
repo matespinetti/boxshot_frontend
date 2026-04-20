@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 import { EmptyState } from "@/components/shared"
 import { Button } from "@/components/ui/button"
@@ -28,12 +28,11 @@ export function ImageGrid({
   const [page, setPage] = useState(1)
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
   const totalPages = Math.max(1, Math.ceil(images.length / pageSize))
-
-  useEffect(() => {
-    setPage(1)
-  }, [images.length])
-
-  const pageImages = images.slice((page - 1) * pageSize, page * pageSize)
+  const currentPage = Math.min(page, totalPages)
+  const pageImages = images.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize,
+  )
 
   function handleOpenLightbox(imageId: string) {
     const index = images.findIndex((img) => img.id === imageId)
@@ -81,22 +80,24 @@ export function ImageGrid({
         {totalPages > 1 && (
           <div className="flex items-center justify-between gap-3">
             <p className="text-sm text-muted-foreground">
-              Page {page} of {totalPages}
+              Page {currentPage} of {totalPages}
             </p>
             <div className="flex gap-2">
               <Button
                 variant="outline"
                 size="sm"
-                disabled={page <= 1}
-                onClick={() => setPage((current) => current - 1)}
+                disabled={currentPage <= 1}
+                onClick={() => setPage((current) => Math.max(1, current - 1))}
               >
                 Previous
               </Button>
               <Button
                 variant="outline"
                 size="sm"
-                disabled={page >= totalPages}
-                onClick={() => setPage((current) => current + 1)}
+                disabled={currentPage >= totalPages}
+                onClick={() =>
+                  setPage((current) => Math.min(totalPages, current + 1))
+                }
               >
                 Next
               </Button>
