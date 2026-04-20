@@ -56,6 +56,11 @@ const adminLinks: NavLink[] = [
     icon: Wrench,
   },
   {
+    label: "Surface Types",
+    href: ROUTES.admin.surfaceTypes,
+    icon: Wrench,
+  },
+  {
     label: "Prompt Templates",
     href: ROUTES.admin.promptTemplates,
     icon: FileText,

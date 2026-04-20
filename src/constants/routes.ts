@@ -9,6 +9,7 @@ export const ROUTES = {
     countries: "/admin/countries",
     shotTypes: "/admin/shot-types",
     installationTypes: "/admin/installation-types",
+    surfaceTypes: "/admin/surface-types",
     promptTemplates: "/admin/prompt-templates",
     overrides: "/admin/overrides",
   },
