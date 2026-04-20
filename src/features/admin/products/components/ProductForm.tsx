@@ -12,15 +12,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
 import { PromptBlockEditor } from "@/features/admin/components"
-import { useAdminInstallationTypes } from "@/features/admin/installation-types/api/installationTypes"
 import { ReferenceImageUpload } from "@/features/admin/products/components/ReferenceImageUpload"
 import {
   productFormSchema,
@@ -34,14 +26,11 @@ interface ProductFormProps {
 }
 
 export function ProductForm({ defaultValues, onSubmit, isSubmitting }: ProductFormProps) {
-  const { data: installationTypes = [], isLoading: isLoadingInstallationTypes } = useAdminInstallationTypes()
-
   const form = useForm<ProductFormValues>({
     resolver: zodResolver(productFormSchema),
     defaultValues: {
       name: defaultValues?.name ?? "",
       slug: defaultValues?.slug ?? "",
-      installation_type_id: defaultValues?.installation_type_id ?? "",
       product_prompt_block: defaultValues?.product_prompt_block ?? "",
     },
   })
@@ -51,7 +40,6 @@ export function ProductForm({ defaultValues, onSubmit, isSubmitting }: ProductFo
     form.reset({
       name: defaultValues?.name ?? "",
       slug: defaultValues?.slug ?? "",
-      installation_type_id: defaultValues?.installation_type_id ?? "",
       product_prompt_block: defaultValues?.product_prompt_block ?? "",
     })
   }, [defaultValues, form])
@@ -100,41 +88,6 @@ export function ProductForm({ defaultValues, onSubmit, isSubmitting }: ProductFo
               )}
             />
           </div>
-
-          <FormField
-            control={form.control}
-            name="installation_type_id"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Installation Type</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  value={field.value}
-                  disabled={isLoadingInstallationTypes}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder={
-                        isLoadingInstallationTypes
-                          ? "Loading types..."
-                          : "Select an installation type"
-                      }>
-                        {installationTypes.find((t) => t.id === field.value)?.label}
-                      </SelectValue>
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {installationTypes.map((type) => (
-                      <SelectItem key={type.id} value={type.id}>
-                        {type.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
 
           <FormField
             control={form.control}

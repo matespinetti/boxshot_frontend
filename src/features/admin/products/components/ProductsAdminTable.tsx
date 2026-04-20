@@ -1,5 +1,4 @@
 import { StatusBadge } from "@/components/shared"
-import { Badge } from "@/components/ui/badge"
 import { AdminTable } from "@/features/admin/components"
 import { type ProductAdmin } from "@/schemas/entities"
 
@@ -38,15 +37,6 @@ export function ProductsAdminTable({
           key: "slug",
           header: "Slug",
           render: (item) => <span className="text-muted-foreground">{item.slug}</span>,
-        },
-        {
-          key: "installation_type_id",
-          header: "Installation Type ID",
-          render: (item) => (
-            <Badge variant="outline" className="font-mono text-xs">
-              {item.installation_type_id.split("-")[0]}...
-            </Badge>
-          ),
         },
         {
           key: "active",

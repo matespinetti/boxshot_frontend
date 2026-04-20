@@ -5,16 +5,6 @@ import { describe, expect, it, vi } from "vitest"
 
 import { ProductForm } from "../ProductForm"
 
-vi.mock("@/features/admin/installation-types/api/installationTypes", () => ({
-  useAdminInstallationTypes: vi.fn(() => ({
-    data: [
-      { id: "inst-1", name: "Wall Mount" },
-      { id: "inst-2", name: "Floor Stand" },
-    ],
-    isLoading: false,
-  })),
-}))
-
 // Mock the ReferenceImageUpload component since it has its own tests
 vi.mock("../ReferenceImageUpload", () => ({
   ReferenceImageUpload: ({ productId }: { productId: string }) => (
@@ -34,7 +24,7 @@ describe("ProductForm", () => {
 
     expect(screen.getByText("Product Name")).toBeInTheDocument()
     expect(screen.getByText("Slug")).toBeInTheDocument()
-    expect(screen.getByText("Installation Type")).toBeInTheDocument()
+    expect(screen.queryByText("Installation Type")).not.toBeInTheDocument()
     expect(screen.getByText("Product Prompt Block")).toBeInTheDocument()
     
     // Upload should NOT be visible when creating a new product
@@ -61,7 +51,6 @@ describe("ProductForm", () => {
           id: "prod-123", 
           name: "Existing Product", 
           slug: "existing-product",
-          installation_type_id: "inst-1",
           product_prompt_block: "Test",
         }} 
       />
@@ -81,7 +70,6 @@ describe("ProductForm", () => {
 
     await waitFor(() => {
       expect(screen.getByText(/Name is required/i)).toBeInTheDocument()
-      expect(screen.getByText(/Please select an installation type/i)).toBeInTheDocument()
       expect(screen.getByText(/Product prompt block is required/i)).toBeInTheDocument()
     })
 

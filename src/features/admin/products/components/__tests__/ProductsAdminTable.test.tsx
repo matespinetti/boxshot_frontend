@@ -10,7 +10,6 @@ const mockData: ProductAdmin[] = [
     id: "1",
     name: "Ceramic Mug",
     slug: "ceramic-mug",
-    installation_type_id: "inst-001",
     product_prompt_block: "A nice mug.",
     active: true,
     deleted_at: null,
@@ -19,7 +18,6 @@ const mockData: ProductAdmin[] = [
     id: "2",
     name: "Steel Bottle",
     slug: "steel-bottle",
-    installation_type_id: "inst-002",
     product_prompt_block: "A metal bottle.",
     active: false,
     deleted_at: null,
@@ -38,6 +36,7 @@ describe("ProductsAdminTable", () => {
 
     expect(screen.getByText("Ceramic Mug")).toBeInTheDocument()
     expect(screen.getByText("ceramic-mug")).toBeInTheDocument()
+    expect(screen.queryByText("Installation Type ID")).not.toBeInTheDocument()
     
     expect(screen.getByText("Steel Bottle")).toBeInTheDocument()
     expect(screen.getByText("steel-bottle")).toBeInTheDocument()
