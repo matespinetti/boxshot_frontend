@@ -6,17 +6,23 @@ import { Form } from "@/components/ui/form"
 import { type Control } from "react-hook-form"
 import { getColours } from "@/features/generation/api/getColours"
 import { getCountries } from "@/features/generation/api/getCountries"
+import { getInstallationTypes } from "@/features/generation/api/getInstallationTypes"
+import { getModels } from "@/features/generation/api/getModels"
 import { getProducts } from "@/features/generation/api/getProducts"
 import { getShotTypes } from "@/features/generation/api/getShotTypes"
+import { getSurfaceTypes } from "@/features/generation/api/getSurfaceTypes"
 import { useGenerationForm } from "@/features/generation/hooks/useGenerationForm"
 import { generationQueryKeys } from "@/features/generation/queryKeys"
 import type { CreateJobRequest } from "@/features/generation/types"
 import { ColourSelector } from "./ColourSelector"
 import { CountryMultiSelect } from "./CountryMultiSelect"
+import { InstallationTypeSelector } from "./InstallationTypeSelector"
+import { ModelSelector } from "./ModelSelector"
 import { ProductSelector } from "./ProductSelector"
 import { PromptPreviewModal } from "./PromptPreviewModal"
 import { ReferenceImageSelector } from "./ReferenceImageSelector"
 import { ShotTypeMultiSelect } from "./ShotTypeMultiSelect"
+import { SurfaceTypeSelector } from "./SurfaceTypeSelector"
 import { VariationSelector } from "./VariationSelector"
 
 export function GenerationPanel() {
@@ -52,6 +58,21 @@ export function GenerationPanel() {
     queryKey: generationQueryKeys.shotTypes(),
     queryFn: getShotTypes,
   })
+  const { data: installationTypes, isLoading: installationTypesLoading } =
+    useQuery({
+      queryKey: generationQueryKeys.installationTypes(),
+      queryFn: getInstallationTypes,
+    })
+  const { data: surfaceTypes, isLoading: surfaceTypesLoading } = useQuery({
+    queryKey: generationQueryKeys.surfaceTypes(),
+    queryFn: getSurfaceTypes,
+  })
+  const { data: models, isLoading: modelsLoading } = useQuery({
+    queryKey: generationQueryKeys.models(),
+    queryFn: getModels,
+  })
+
+  const hasModels = (models?.length ?? 0) > 0
 
   return (
     <>
@@ -72,6 +93,16 @@ export function GenerationPanel() {
               isLoading={coloursLoading}
               disabled={!productId}
             />
+            <InstallationTypeSelector
+              control={control}
+              installationTypes={installationTypes?.items ?? []}
+              isLoading={installationTypesLoading}
+            />
+            <SurfaceTypeSelector
+              control={control}
+              surfaceTypes={surfaceTypes?.items ?? []}
+              isLoading={surfaceTypesLoading}
+            />
             <CountryMultiSelect
               control={control}
               countries={countries?.items ?? []}
@@ -81,6 +112,11 @@ export function GenerationPanel() {
               control={control}
               shotTypes={shotTypes?.items ?? []}
               isLoading={shotTypesLoading}
+            />
+            <ModelSelector
+              control={control}
+              models={models ?? []}
+              isLoading={modelsLoading}
             />
             <VariationSelector control={control} />
             <ReferenceImageSelector
@@ -100,7 +136,7 @@ export function GenerationPanel() {
             <Button
               type="submit"
               className="w-full"
-              disabled={isPreviewing || totalImages === 0}
+              disabled={isPreviewing || totalImages === 0 || !hasModels}
             >
               {isPreviewing ? "Loading preview..." : "Generate"}
             </Button>
