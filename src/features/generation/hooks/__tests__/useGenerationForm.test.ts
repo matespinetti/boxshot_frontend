@@ -1,6 +1,6 @@
 import { renderHook, act } from "@testing-library/react"
 import { describe, it, expect, vi, beforeEach } from "vitest"
-import { useSearchParams } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 
 vi.mock("next/navigation", () => ({
   useSearchParams: vi.fn(() => new URLSearchParams()),
@@ -26,13 +26,19 @@ vi.mock("@/features/generation/api/createJob", () => ({
   createJob: vi.fn(),
 }))
 
+import { createJob } from "@/features/generation/api/createJob"
+import { previewPrompts } from "@/features/generation/api/previewPrompts"
 import { useGenerationForm } from "../useGenerationForm"
+
+const UUID = "550e8400-e29b-41d4-a716-446655440000"
 
 describe("useGenerationForm", () => {
   beforeEach(() => {
     vi.mocked(useSearchParams).mockReturnValue(
       new URLSearchParams() as ReturnType<typeof useSearchParams>,
     )
+    vi.mocked(previewPrompts).mockReset()
+    vi.mocked(createJob).mockReset()
   })
 
   it("initialises totalImages as 0 when no selections", () => {
@@ -53,11 +59,16 @@ describe("useGenerationForm", () => {
   it("rehydrates product_id and variations from search params on mount", () => {
     vi.mocked(useSearchParams).mockReturnValue(
       new URLSearchParams(
-        "product_id=some-product&variations=3",
+        "product_id=some-product&installation_type_id=inst-id&surface_type_id=surface-id&model=fal-ai%2Fgpt-image-1.5%2Fedit&variations=3",
       ) as ReturnType<typeof useSearchParams>,
     )
     const { result } = renderHook(() => useGenerationForm())
     expect(result.current.form.getValues("product_id")).toBe("some-product")
+    expect(result.current.form.getValues("installation_type_id")).toBe("inst-id")
+    expect(result.current.form.getValues("surface_type_id")).toBe("surface-id")
+    expect(result.current.form.getValues("model")).toBe(
+      "fal-ai/gpt-image-1.5/edit",
+    )
     expect(result.current.form.getValues("variations")).toBe(3)
   })
 
@@ -83,5 +94,66 @@ describe("useGenerationForm", () => {
   it("exposes isPreviewing as false initially", () => {
     const { result } = renderHook(() => useGenerationForm())
     expect(result.current.isPreviewing).toBe(false)
+  })
+
+  it("submits installation_type_id and surface_type_id to preview", async () => {
+    vi.mocked(previewPrompts).mockResolvedValue({ prompts: [] })
+    const { result } = renderHook(() => useGenerationForm())
+
+    act(() => {
+      result.current.form.setValue("product_id", UUID)
+      result.current.form.setValue("colour_id", UUID)
+      result.current.form.setValue("installation_type_id", UUID)
+      result.current.form.setValue("surface_type_id", UUID)
+      result.current.form.setValue("country_ids", [UUID])
+      result.current.form.setValue("shot_type_ids", [UUID])
+      result.current.form.setValue("model", "fal-ai/gpt-image-1.5/edit")
+    })
+
+    await act(async () => {
+      await result.current.onSubmit({
+        preventDefault: vi.fn(),
+        persist: vi.fn(),
+      } as unknown as React.BaseSyntheticEvent)
+    })
+
+    expect(previewPrompts).toHaveBeenCalledWith(
+      expect.objectContaining({
+        installation_type_id: UUID,
+        surface_type_id: UUID,
+      }),
+    )
+  })
+
+  it("submits installation_type_id, surface_type_id, and model when confirming", async () => {
+    const push = vi.fn()
+    vi.mocked(useRouter).mockReturnValue({ push } as ReturnType<typeof useRouter>)
+    vi.mocked(createJob).mockResolvedValue({ id: UUID } as { id: string })
+
+    const { result } = renderHook(() => useGenerationForm())
+
+    act(() => {
+      result.current.form.setValue("product_id", UUID)
+      result.current.form.setValue("colour_id", UUID)
+      result.current.form.setValue("installation_type_id", UUID)
+      result.current.form.setValue("surface_type_id", UUID)
+      result.current.form.setValue("country_ids", [UUID])
+      result.current.form.setValue("shot_type_ids", [UUID])
+      result.current.form.setValue("variations", 1)
+      result.current.form.setValue("model", "fal-ai/gpt-image-1.5/edit")
+    })
+
+    await act(async () => {
+      await result.current.handleConfirm()
+    })
+
+    expect(createJob).toHaveBeenCalledWith(
+      expect.objectContaining({
+        installation_type_id: UUID,
+        surface_type_id: UUID,
+        model: "fal-ai/gpt-image-1.5/edit",
+      }),
+    )
+    expect(push).toHaveBeenCalledWith(`/jobs/${UUID}`)
   })
 })

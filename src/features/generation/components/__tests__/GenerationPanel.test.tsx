@@ -47,6 +47,8 @@ vi.mock("@/features/generation/hooks/useGenerationForm", () => ({
     form: {
       watch: vi.fn(() => ""),
       control: {},
+      getValues: vi.fn(() => ""),
+      setValue: vi.fn(),
     },
     totalImages: 0,
     previewData: null,

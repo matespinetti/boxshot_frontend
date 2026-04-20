@@ -1,5 +1,7 @@
 "use client"
 
+import { useEffect } from "react"
+
 import { useQuery } from "@tanstack/react-query"
 import { Button } from "@/components/ui/button"
 import { Form } from "@/components/ui/form"
@@ -74,6 +76,12 @@ export function GenerationPanel() {
 
   const hasModels = (models?.length ?? 0) > 0
 
+  useEffect(() => {
+    if (!form.getValues("model") && models?.[0]?.id) {
+      form.setValue("model", models[0].id, { shouldValidate: true })
+    }
+  }, [form, models])
+
   return (
     <>
       <Form {...form}>
@@ -133,6 +141,12 @@ export function GenerationPanel() {
                 images to generate
               </p>
             </div>
+            {!modelsLoading && !hasModels ? (
+              <p className="text-sm text-destructive">
+                No generation models are available. Preview and generate are
+                disabled.
+              </p>
+            ) : null}
             <Button
               type="submit"
               className="w-full"

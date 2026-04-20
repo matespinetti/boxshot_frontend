@@ -33,6 +33,9 @@ export function useGenerationForm() {
     defaultValues: {
       product_id: searchParams.get("product_id") ?? "",
       colour_id: searchParams.get("colour_id") ?? "",
+      installation_type_id: searchParams.get("installation_type_id") ?? "",
+      surface_type_id: searchParams.get("surface_type_id") ?? "",
+      model: searchParams.get("model") ?? "",
       country_ids:
         searchParams.get("country_ids")?.split(",").filter(Boolean) ?? [],
       shot_type_ids:
@@ -47,6 +50,9 @@ export function useGenerationForm() {
     {
       product_id: parseAsString.withDefault(""),
       colour_id: parseAsString.withDefault(""),
+      installation_type_id: parseAsString.withDefault(""),
+      surface_type_id: parseAsString.withDefault(""),
+      model: parseAsString.withDefault(""),
       country_ids: parseAsArrayOf(parseAsString).withDefault([]),
       shot_type_ids: parseAsArrayOf(parseAsString).withDefault([]),
       variations: parseAsInteger.withDefault(1),
@@ -61,6 +67,9 @@ export function useGenerationForm() {
     void setParams({
       product_id: values.product_id ?? "",
       colour_id: values.colour_id ?? "",
+      installation_type_id: values.installation_type_id ?? "",
+      surface_type_id: values.surface_type_id ?? "",
+      model: values.model ?? "",
       country_ids: values.country_ids ?? [],
       shot_type_ids: values.shot_type_ids ?? [],
       variations: values.variations ?? 1,
@@ -94,6 +103,8 @@ export function useGenerationForm() {
       const preview = await previewPrompts({
         product_id: data.product_id,
         colour_id: data.colour_id,
+        installation_type_id: data.installation_type_id,
+        surface_type_id: data.surface_type_id,
         country_ids: data.country_ids,
         shot_type_ids: data.shot_type_ids,
         ...(data.prompt_template_id != null
@@ -115,9 +126,12 @@ export function useGenerationForm() {
       const job = await createJob({
         product_id: data.product_id,
         colour_id: data.colour_id,
+        installation_type_id: data.installation_type_id,
+        surface_type_id: data.surface_type_id,
         country_ids: data.country_ids,
         shot_type_ids: data.shot_type_ids,
         variations: data.variations ?? 1,
+        model: data.model,
         ...(data.prompt_template_id != null
           ? { prompt_template_id: data.prompt_template_id }
           : {}),
