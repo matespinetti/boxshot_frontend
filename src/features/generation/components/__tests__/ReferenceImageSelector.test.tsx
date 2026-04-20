@@ -65,7 +65,7 @@ describe("ReferenceImageSelector", () => {
     expect(screen.getByAltText("Side")).toBeInTheDocument()
   })
 
-  it("shows warning when 0 images are selected", async () => {
+  it("shows required message when 0 images are selected", async () => {
     render(
       <ReferenceImageSelector
         productId="prod-1"
@@ -75,7 +75,9 @@ describe("ReferenceImageSelector", () => {
       { wrapper },
     )
     await screen.findByAltText("Front")
-    expect(screen.getByText(/no reference images selected/i)).toBeInTheDocument()
+    expect(
+      screen.getByText(/select at least 1 reference image to continue/i),
+    ).toBeInTheDocument()
   })
 
   it("blocks selection when 9 are already selected", async () => {

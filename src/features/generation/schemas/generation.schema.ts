@@ -20,7 +20,10 @@ export const CreateJobRequestSchema = z.object({
   shot_type_ids: z.array(z.string().uuid()).min(1),
   variations: z.number().int().min(1).max(10).default(1),
   prompt_template_id: z.string().uuid().nullable().optional(),
-  product_image_ids: z.array(z.string().uuid()).max(9).optional(),
+  product_image_ids: z
+    .array(z.string().uuid())
+    .min(1, "Select at least 1 reference image")
+    .max(9),
   model: z.string().min(1),
 })
 export type CreateJobRequest = z.infer<typeof CreateJobRequestSchema>

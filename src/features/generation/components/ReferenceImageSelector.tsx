@@ -9,6 +9,7 @@ import { getProductImages } from "@/features/generation/api/getProductImages"
 interface ReferenceImageSelectorProps {
   productId: string
   value: string[]
+  error?: string
   onChange: (value: string[]) => void
 }
 
@@ -19,6 +20,7 @@ function resolveImageUrl(url: string, baseUrl: string) {
 export function ReferenceImageSelector({
   productId,
   value,
+  error,
   onChange,
 }: ReferenceImageSelectorProps) {
   const { data: images, isLoading } = useQuery({
@@ -33,8 +35,8 @@ export function ReferenceImageSelector({
         <div>
           <p className="text-sm font-medium leading-none">Reference Images</p>
           <p className="mt-1 text-xs text-muted-foreground">
-            Select up to 9 photos to use as visual reference for generation.
-            Omit for text-to-image mode.
+            Select up to 9 photos to use as visual reference for generation. At
+            least 1 image is required.
           </p>
         </div>
         <p className="text-sm text-muted-foreground">
@@ -50,8 +52,8 @@ export function ReferenceImageSelector({
         <div>
           <p className="text-sm font-medium leading-none">Reference Images</p>
           <p className="mt-1 text-xs text-muted-foreground">
-            Select up to 9 photos to use as visual reference for generation.
-            Omit for text-to-image mode.
+            Select up to 9 photos to use as visual reference for generation. At
+            least 1 image is required.
           </p>
         </div>
         <div className="flex gap-3 overflow-x-auto pb-1">
@@ -81,13 +83,13 @@ export function ReferenceImageSelector({
       <div>
         <p className="text-sm font-medium leading-none">Reference Images</p>
         <p className="mt-1 text-xs text-muted-foreground">
-          Select up to 9 photos to use as visual reference for generation. Omit
-          for text-to-image mode.
+          Select up to 9 photos to use as visual reference for generation. At
+          least 1 image is required.
         </p>
       </div>
       {value.length === 0 && (
-        <p className="text-xs text-amber-600">
-          No reference images selected — text-to-image mode
+        <p className="text-xs text-destructive">
+          {error ?? "Select at least 1 reference image to continue."}
         </p>
       )}
       <div className="flex gap-3 overflow-x-auto pb-1">

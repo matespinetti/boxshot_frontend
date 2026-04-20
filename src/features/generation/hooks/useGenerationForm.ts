@@ -135,9 +135,7 @@ export function useGenerationForm() {
         ...(data.prompt_template_id != null
           ? { prompt_template_id: data.prompt_template_id }
           : {}),
-        ...(data.product_image_ids?.length
-          ? { product_image_ids: data.product_image_ids }
-          : {}),
+        product_image_ids: data.product_image_ids,
       })
       router.push(`/jobs/${job.id}`)
     } catch {

@@ -109,6 +109,7 @@ describe("useGenerationForm", () => {
       result.current.form.setValue("country_ids", [UUID])
       result.current.form.setValue("shot_type_ids", [UUID])
       result.current.form.setValue("model", "fal-ai/gpt-image-1.5/edit")
+      result.current.form.setValue("product_image_ids", [UUID])
     })
 
     await act(async () => {
@@ -124,6 +125,31 @@ describe("useGenerationForm", () => {
         surface_type_id: UUID,
       }),
     )
+  })
+
+  it("blocks preview when no reference image is selected", async () => {
+    const { result } = renderHook(() => useGenerationForm())
+
+    act(() => {
+      result.current.form.setValue("product_id", UUID)
+      result.current.form.setValue("colour_id", UUID)
+      result.current.form.setValue("installation_type_id", UUID)
+      result.current.form.setValue("surface_type_id", UUID)
+      result.current.form.setValue("country_ids", [UUID])
+      result.current.form.setValue("shot_type_ids", [UUID])
+      result.current.form.setValue("model", "fal-ai/gpt-image-1.5/edit")
+      result.current.form.setValue("variations", 1)
+      result.current.form.setValue("product_image_ids", [])
+    })
+
+    await act(async () => {
+      await result.current.onSubmit({
+        preventDefault: vi.fn(),
+        persist: vi.fn(),
+      } as unknown as React.BaseSyntheticEvent)
+    })
+
+    expect(previewPrompts).not.toHaveBeenCalled()
   })
 
   it("submits installation_type_id, surface_type_id, and model when confirming", async () => {
@@ -156,6 +182,7 @@ describe("useGenerationForm", () => {
       result.current.form.setValue("shot_type_ids", [UUID])
       result.current.form.setValue("variations", 1)
       result.current.form.setValue("model", "fal-ai/gpt-image-1.5/edit")
+      result.current.form.setValue("product_image_ids", [UUID])
     })
 
     await act(async () => {

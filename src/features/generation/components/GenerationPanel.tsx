@@ -40,6 +40,8 @@ export function GenerationPanel() {
   } = useGenerationForm()
 
   const productId = form.watch("product_id")
+  const productImageIds = form.watch("product_image_ids") ?? []
+  const productImageError = form.formState.errors.product_image_ids?.message
   // Cast because form uses z.input type (variations?: number) but selectors are typed
   // against CreateJobRequest output type (variations: number). Functionally identical.
   const control = form.control as unknown as Control<CreateJobRequest>
@@ -129,8 +131,16 @@ export function GenerationPanel() {
             <VariationSelector control={control} />
             <ReferenceImageSelector
               productId={productId ?? ""}
-              value={form.watch("product_image_ids") ?? []}
-              onChange={(ids) => form.setValue("product_image_ids", ids)}
+              value={productImageIds}
+              error={
+                typeof productImageError === "string" ? productImageError : undefined
+              }
+              onChange={(ids) =>
+                form.setValue("product_image_ids", ids, {
+                  shouldDirty: true,
+                  shouldValidate: true,
+                })
+              }
             />
           </div>
 
@@ -150,7 +160,12 @@ export function GenerationPanel() {
             <Button
               type="submit"
               className="w-full"
-              disabled={isPreviewing || totalImages === 0 || !hasModels}
+              disabled={
+                isPreviewing ||
+                totalImages === 0 ||
+                !hasModels ||
+                productImageIds.length === 0
+              }
             >
               {isPreviewing ? "Loading preview..." : "Generate"}
             </Button>

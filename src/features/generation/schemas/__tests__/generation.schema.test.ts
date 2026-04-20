@@ -61,14 +61,15 @@ describe("PreviewPromptsRequestSchema", () => {
   })
 
   it("requires installation_type_id", () => {
-    const { installation_type_id: _installationTypeId, ...withoutInstallation } =
-      valid
+    const withoutInstallation = { ...valid }
+    Reflect.deleteProperty(withoutInstallation, "installation_type_id")
 
     expect(() => PreviewPromptsRequestSchema.parse(withoutInstallation)).toThrow()
   })
 
   it("requires surface_type_id", () => {
-    const { surface_type_id: _surfaceTypeId, ...withoutSurface } = valid
+    const withoutSurface = { ...valid }
+    Reflect.deleteProperty(withoutSurface, "surface_type_id")
 
     expect(() => PreviewPromptsRequestSchema.parse(withoutSurface)).toThrow()
   })
@@ -82,6 +83,7 @@ describe("CreateJobRequestSchema", () => {
     surface_type_id: UUID,
     country_ids: [UUID],
     shot_type_ids: [UUID],
+    product_image_ids: [UUID],
     model: "fal-ai/gpt-image-1.5/edit",
   }
 
@@ -113,6 +115,22 @@ describe("CreateJobRequestSchema", () => {
         product_image_ids: Array(10).fill(UUID),
       }),
     ).toThrow()
+  })
+
+  it("rejects empty product_image_ids", () => {
+    expect(() =>
+      CreateJobRequestSchema.parse({
+        ...valid,
+        product_image_ids: [],
+      }),
+    ).toThrow()
+  })
+
+  it("requires product_image_ids", () => {
+    const withoutProductImages = { ...valid }
+    Reflect.deleteProperty(withoutProductImages, "product_image_ids")
+
+    expect(() => CreateJobRequestSchema.parse(withoutProductImages)).toThrow()
   })
 
   it("rejects variations below 1", () => {
@@ -154,13 +172,17 @@ describe("CreateJobRequestSchema", () => {
   })
 
   it("accepts omitted prompt_template_id", () => {
-    const result = CreateJobRequestSchema.parse(valid)
+    const result = CreateJobRequestSchema.parse({
+      ...valid,
+      product_image_ids: [UUID],
+    })
 
     expect(result.prompt_template_id).toBeUndefined()
   })
 
   it("requires model", () => {
-    const { model: _model, ...withoutModel } = valid
+    const withoutModel = { ...valid }
+    Reflect.deleteProperty(withoutModel, "model")
 
     expect(() => CreateJobRequestSchema.parse(withoutModel)).toThrow()
   })

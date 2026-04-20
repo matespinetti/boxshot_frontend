@@ -3,6 +3,13 @@ import { describe, expect, it, vi } from "vitest"
 
 import { GenerationPanel } from "../GenerationPanel"
 
+const setValue = vi.fn()
+const watch = vi.fn((field?: string) => {
+  if (field === "product_id") return "prod-1"
+  if (field === "product_image_ids") return []
+  return ""
+})
+
 vi.mock("@tanstack/react-query", () => ({
   useQuery: vi.fn(() => ({
     data: { items: [] },
@@ -45,12 +52,13 @@ vi.mock("@/components/ui/form", () => ({
 vi.mock("@/features/generation/hooks/useGenerationForm", () => ({
   useGenerationForm: () => ({
     form: {
-      watch: vi.fn(() => ""),
+      watch,
       control: {},
       getValues: vi.fn(() => ""),
-      setValue: vi.fn(),
+      setValue,
+      formState: { errors: {} },
     },
-    totalImages: 0,
+    totalImages: 1,
     previewData: null,
     isPreviewing: false,
     isCreating: false,
@@ -107,5 +115,13 @@ describe("GenerationPanel", () => {
     expect(screen.getByText("Installation Type")).toBeInTheDocument()
     expect(screen.getByText("Surface Type")).toBeInTheDocument()
     expect(screen.getByText("Model")).toBeInTheDocument()
+  })
+
+  it("disables Generate when no reference image is selected", () => {
+    render(<GenerationPanel />)
+
+    expect(
+      screen.getByRole("button", { name: "Generate" }),
+    ).toBeDisabled()
   })
 })
