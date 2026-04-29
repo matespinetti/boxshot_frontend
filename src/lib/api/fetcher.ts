@@ -49,6 +49,7 @@ export async function fetcher<T>(
     response = await fetch(`${env.NEXT_PUBLIC_API_URL}${path}`, {
       ...init,
       headers,
+      credentials: "include",
       signal: controller.signal,
     })
   } catch (error) {

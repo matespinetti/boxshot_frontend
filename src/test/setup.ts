@@ -1,6 +1,8 @@
 import "@testing-library/jest-dom"
 import { vi } from "vitest"
 
+process.env.NEXT_PUBLIC_API_URL ??= "http://localhost:8000/api/v1"
+
 class ResizeObserverMock {
   observe() {}
   unobserve() {}

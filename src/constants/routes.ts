@@ -1,4 +1,5 @@
 export const ROUTES = {
+  login: "/login",
   generate: "/generate",
   jobs: "/jobs",
   job: (id: string) => `/jobs/${id}`,

@@ -7,6 +7,10 @@ import { AppSidebar } from "../AppSidebar"
 
 vi.mock("next/navigation", () => ({
   usePathname: vi.fn(),
+  useRouter: () => ({
+    replace: vi.fn(),
+    refresh: vi.fn(),
+  }),
 }))
 
 vi.mock("next/link", () => ({
@@ -47,7 +51,7 @@ describe("AppSidebar", () => {
 
     expect(screen.getByText("ParcelFlow")).toBeInTheDocument()
     expect(screen.getByText("Image operations")).toBeInTheDocument()
-    expect(container.querySelectorAll("svg.lucide").length).toBe(11)
+    expect(container.querySelectorAll("svg.lucide").length).toBe(12)
   })
 
   it("renders all navigation links with correct hrefs", () => {

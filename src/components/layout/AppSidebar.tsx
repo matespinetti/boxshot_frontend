@@ -26,6 +26,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { ROUTES } from "@/constants/routes"
+import { LogoutButton } from "@/features/auth/components/LogoutButton"
 
 interface NavLink {
   label: string
@@ -153,6 +154,12 @@ export function AppSidebar() {
                 </SidebarMenuItem>
               )
             })}
+          </SidebarMenu>
+        </SidebarGroup>
+
+        <SidebarGroup className="mt-auto">
+          <SidebarMenu>
+            <LogoutButton />
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
