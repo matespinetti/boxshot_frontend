@@ -89,6 +89,7 @@ export function useUploadProductImage() {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/v1"}/admin/products/${productId}/images/upload`, {
         method: "POST",
         body: formData,
+        credentials: "include",
         // Don't set Content-Type header manually, let browser set it with boundary
       })
 
